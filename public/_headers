@@ -2,9 +2,12 @@
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
 
-# Media (images/videos) — cache 30 days. Bump a filename or purge cache to update.
+# Media (images/videos) — cache 30 days. no-transform keeps Cloudflare from
+# compressing/altering video bytes, which is required for HTTP range requests
+# (i.e. so visitors can seek/skip within videos).
 /media/*
-  Cache-Control: public, max-age=2592000
+  Cache-Control: public, max-age=2592000, no-transform
+  Accept-Ranges: bytes
 
 # The résumé PDF — cache 1 day so updates show quickly.
 /resume.pdf

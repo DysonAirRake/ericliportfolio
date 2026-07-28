@@ -24,6 +24,12 @@ const flip = idx % 2 === 1;
         {slides.map((sl, i) => <button class={"fdot" + (i===0?' on':'')} data-i={i} aria-label="slide"></button>)}
       </div>
     )}
+    {slides.length > 1 && (
+      <>
+        <button class="farrow fprev" type="button" aria-label="Previous slide">&#8249;</button>
+        <button class="farrow fnext" type="button" aria-label="Next slide">&#8250;</button>
+      </>
+    )}
   </div>
 
   <div class="text">
@@ -59,6 +65,12 @@ const flip = idx % 2 === 1;
   .fdots{position:absolute;bottom:14px;left:0;right:0;display:flex;justify-content:center;gap:8px;z-index:2}
   .fdot{width:22px;height:3px;border:0;border-radius:3px;background:rgba(255,255,255,.5);cursor:pointer;transition:.3s;padding:0}
   .fdot.on{background:#fff;width:32px}
+  .farrow{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:40px;height:40px;border:0;
+    border-radius:50%;background:rgba(255,255,255,.92);color:var(--ink);font-size:22px;line-height:1;cursor:pointer;
+    display:grid;place-items:center;box-shadow:0 4px 16px -4px rgba(15,25,55,.55);opacity:.9;transition:.2s;padding-bottom:2px}
+  .farrow:hover{opacity:1;background:#fff;transform:translateY(-50%) scale(1.08)}
+  .farrow.fprev{left:12px}
+  .farrow.fnext{right:12px}
   .flip .media{order:2}
 
   .text h3{font-size:clamp(1.6rem,3vw,2.5rem);margin:14px 0 0;letter-spacing:-.03em}
@@ -84,16 +96,17 @@ const flip = idx % 2 === 1;
     const slides = [...f.querySelectorAll('.slide')];
     const dots = [...f.querySelectorAll('.fdot')];
     if (slides.length < 2) return;
-    let i = 0;
+    let i = 0, t = null;
     const show = (n) => {
-      slides.forEach((s, k) => s.classList.toggle('is-active', k === n));
-      dots.forEach((d, k) => d.classList.toggle('on', k === n));
-      i = n;
+      i = (n + slides.length) % slides.length;
+      slides.forEach((s, k) => s.classList.toggle('is-active', k === i));
+      dots.forEach((d, k) => d.classList.toggle('on', k === i));
     };
-    let t = setInterval(() => show((i + 1) % slides.length), 3800);
-    dots.forEach((d) => d.addEventListener('click', (e) => {
-      e.preventDefault(); clearInterval(t); show(Number(d.dataset.i));
-      t = setInterval(() => show((i + 1) % slides.length), 3800);
-    }));
+    const start = () => { stop(); t = setInterval(() => show(i + 1), 3800); };
+    const stop = () => { if (t) clearInterval(t); t = null; };
+    dots.forEach((d) => d.addEventListener('click', (e) => { e.preventDefault(); show(Number(d.dataset.i)); start(); }));
+    f.querySelector('.fprev')?.addEventListener('click', (e) => { e.preventDefault(); show(i - 1); start(); });
+    f.querySelector('.fnext')?.addEventListener('click', (e) => { e.preventDefault(); show(i + 1); start(); });
+    start();
   });
 </script>

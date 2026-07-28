@@ -54,7 +54,7 @@ skills: [Structural Analysis, Finite Element Analysis, Project Management, Procu
 # PROJECT GALLERY — crane main, hand calc, FEA stress/disp first; rest after (excludes Teams
 # images, the two hero videos, and the install-representation clip)
 media:
-  - { img: crane-main.jpg, title: "Crane Model", subtitle: "Inventor render", desc: "The CAD design used for analysis, drafting and install planning." }
+  - { img: crane-main.jpg, title: "Crane Installation", subtitle: "Load inspection day", desc: "The installed jib crane on load-inspection day." }
   - { img: hand-calc.jpg, title: "Hand Calculations", subtitle: "Sizing by hand", desc: "Worked hand-calculation example sizing the crane and its supporting steel." }
   - { img: fea-stress-disp.jpg, title: "FEA — Stress & Displacement", subtitle: "Column study", desc: "Finite-element study of stress and displacement in the modified column steel." }
   - { img: fea-sf.jpg, title: "FEA — Safety Factor", subtitle: "Factor of safety", desc: "Factor-of-safety plot confirming the column meets the required margin under load." }

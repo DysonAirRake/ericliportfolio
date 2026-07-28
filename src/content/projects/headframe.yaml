@@ -17,10 +17,11 @@ card: inside-steel.jpg
 # Featured-block slideshow (homepage card)
 gallery:
   - { video: skip-removal.mp4, poster: skip-removal.jpg, alt: Skip removal simulation }
-  - { img: inside-steel.jpg, alt: Inside the headframe steel }
+  - { video: skip-removal-20s.mp4, poster: skip-removal-20s.jpg, alt: Skip removal (20s start) }
+  - { img: linkedin.jpg, alt: Nutrien LinkedIn post }
+  - { img: showcase-box.jpg, alt: 1:100 physical model showcase }
+  - { img: engraved.jpg, alt: Engraved name plate }
   - { img: front-view.jpg, alt: Physical model front view }
-  - { img: ore-bucket-green.jpg, alt: Ore bucket highlighted }
-  - { img: autocad-exploded.jpg, alt: AutoCAD exploded view }
   - { img: pose.jpg, alt: Physical model pose }
 
 # Callout cards
@@ -36,12 +37,8 @@ impact: >
   training room — used in steel-upgrade plans and to inform the 53-ton skip (hoist bucket)
   upgrade.
 
-# HERO SECTION 1 — LinkedIn feature image + the video Nutrien asked for (YouTube)
+# HERO SECTION 1 — LinkedIn feature image + the walkthrough video (no text, so the media is large)
 showcase:
-  heading: Posted publicly and asked to make a video.
-  body: >
-    Showcased briefly on Nutrien's LinkedIn, Facebook and Instagram, and on the company's
-    internal Geo homepage — after which I was asked to produce a walkthrough video of the build.
   media:
     - { img: linkedin.jpg, label: "Featured on Nutrien's socials" }
     - { youtube: NnalTH9qz28, label: "The walkthrough I was asked to make" }
@@ -68,7 +65,7 @@ skills: [Reverse Engineering, Technical Drafting, Industrial Rigging/Slinging, C
 # with phone (IMG_) photos last. Excludes the hero YouTube/LinkedIn media, the skip-removal hero
 # clip, and the 20-second skip-removal clip.
 media:
-  - { video: raw-hf.mp4, poster: raw-hf.jpg, title: "Headframe Walkthrough", subtitle: "Build explanation", desc: "Walkthrough explaining the rebuilt ore-production headframe model." }
+  - { video: raw-hf.mp4, poster: raw-hf.jpg, title: "Raw Video Footage", subtitle: "Build explanation", desc: "Walkthrough explaining the rebuilt ore-production headframe model." }
   - { img: inside-steel.jpg, title: "Inside the Steel", subtitle: "Structural interior", desc: "View inside the reconstructed headframe steel structure." }
   - { img: front-view.jpg, title: "Front View", subtitle: "Physical model", desc: "Front view of the 1:100 physical model." }
   - { img: side-wide.jpg, title: "Side Profile", subtitle: "Wide view", desc: "Wide side profile of the headframe." }
