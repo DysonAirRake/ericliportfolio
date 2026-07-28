@@ -1,0 +1,74 @@
+---
+import Icon from './Icon.astro';
+import { getCollection } from 'astro:content';
+import home from '../data/home.json';
+const { variant = 'hero' } = Astro.props;
+// ordered project list = featured then more work
+const all = await getCollection('projects');
+const bySlug = Object.fromEntries(all.map((p) => [p.id, p]));
+const order = [...(home.featured || []), ...(home.moreWork || [])];
+const projects = order.map((s) => bySlug[s]).filter(Boolean).map((p) => ({ slug: p.id, title: p.data.title }));
+---
+<nav class={"nav " + variant}>
+  <a class="brand" href="/">ERIC&nbsp;LI</a>
+
+  <div class="right">
+    <div class="contact">
+      <a href="mailto:ericwrli@gmail.com" class="ci"><Icon name="mail" size={17} /><span>ericwrli@gmail.com</span></a>
+      <a href="tel:+16476369186" class="ci"><Icon name="phone" size={17} /><span>+1 647-636-9186</span></a>
+    </div>
+    <div class="links">
+      <div class="dd">
+        <a href="/#work" class="dd-toggle">Work <span class="caret">▾</span></a>
+        <div class="dd-menu">
+          {projects.map((p) => <a href={`/projects/${p.slug}/`}>{p.title}</a>)}
+        </div>
+      </div>
+      <a href="/#about">About</a>
+      <a href="/#contact">Contact</a>
+      <a class="nav-cta" href="/resume/">Résumé</a>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px var(--pad)}
+  .nav.hero{position:relative;z-index:3;color:#fff;padding-top:22px}
+  .nav.solid{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.86);
+    backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .brand{font-family:var(--font-display);font-weight:700;letter-spacing:.18em;font-size:1.05rem}
+
+  .right{display:flex;align-items:center;gap:26px}
+  .contact{display:flex;align-items:center;gap:18px}
+  .ci{display:inline-flex;align-items:center;gap:7px;font-size:.84rem;font-weight:500;opacity:.9;transition:.2s}
+  .ci:hover{opacity:1;color:var(--accent)}
+  .nav.hero .ci{color:rgba(255,255,255,.9)}
+  .nav.hero .ci:hover{color:#fff}
+  .ci svg{flex:none}
+
+  .links{display:flex;align-items:center;gap:22px;font-family:var(--font-display);font-weight:500;font-size:.9rem}
+  .nav.hero .links a{color:rgba(255,255,255,.85)}
+  .nav.hero .links a:hover{color:#fff}
+  .links a:hover{color:var(--accent)}
+  .nav-cta{border:1px solid var(--line);border-radius:100px;padding:8px 18px}
+  .nav.hero .nav-cta{border-color:rgba(255,255,255,.32)}
+  .nav.hero .nav-cta:hover{background:rgba(255,255,255,.12)}
+  .nav.solid .nav-cta{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 40%,white)}
+
+  /* Work dropdown */
+  .dd{position:relative}
+  .dd-toggle{display:inline-flex;align-items:center;gap:5px}
+  .caret{font-size:.7em;transition:transform .2s}
+  .dd:hover .caret{transform:rotate(180deg)}
+  .dd-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(6px);
+    min-width:250px;background:#fff;border:1px solid var(--line);border-radius:12px;
+    box-shadow:0 24px 50px -18px rgba(15,25,55,.35);padding:8px;
+    display:flex;flex-direction:column;opacity:0;visibility:hidden;pointer-events:none;transition:.18s;z-index:30}
+  .dd::after{content:"";position:absolute;top:100%;left:0;right:0;height:10px} /* hover bridge */
+  .dd:hover .dd-menu,.dd:focus-within .dd-menu{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(8px)}
+  .dd-menu a{color:var(--ink)!important;padding:9px 12px;border-radius:8px;font-size:.86rem;font-weight:500;white-space:nowrap;transition:.15s}
+  .dd-menu a:hover{background:var(--bg-alt);color:var(--accent)!important}
+
+  @media(max-width:960px){ .contact .ci span{display:none} }
+  @media(max-width:640px){ .links a:not(.nav-cta), .dd{display:none} }
+</style>

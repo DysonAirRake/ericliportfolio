@@ -1,0 +1,98 @@
+---
+// Live visual style editor (Wix/Webflow-style aesthetic controls).
+// Shown only during `npm run dev`. Tweaks apply instantly; "Save theme.json"
+// downloads the file to drop into src/data/ to make changes permanent.
+import theme from '../data/theme.json';
+const defaults = JSON.stringify(theme);
+---
+<div id="design-panel" data-defaults={defaults}>
+  <button id="dp-toggle" title="Design">🎨</button>
+  <div id="dp-body">
+    <div class="dp-head"><b>Design</b><span>live preview</span></div>
+    <div class="dp-scroll">
+      <label>Accent<input type="color" data-k="accent"></label>
+      <label>Text<input type="color" data-k="ink"></label>
+      <label>Background<input type="color" data-k="bg"></label>
+      <label>Alt background<input type="color" data-k="bgAlt"></label>
+      <label>Dark sections<input type="color" data-k="dark"></label>
+      <label>Lines<input type="color" data-k="line"></label>
+      <label>Muted text<input type="color" data-k="muted"></label>
+      <label class="rng">Corner radius <output data-o="radius"></output><input type="range" min="0" max="28" step="1" data-k="radius"></label>
+      <label class="rng">Content width <output data-o="maxWidth"></output><input type="range" min="960" max="1400" step="10" data-k="maxWidth"></label>
+      <label class="rng">Base text size <output data-o="baseSize"></output><input type="range" min="15" max="18" step="0.5" data-k="baseSize"></label>
+      <label>Fonts<select data-k="fontPair">
+        <option value="grotesk">Space Grotesk + Inter</option>
+        <option value="inter">Inter only</option>
+        <option value="system">System</option>
+      </select></label>
+    </div>
+    <div class="dp-actions">
+      <button id="dp-reset">Reset</button>
+      <button id="dp-save" class="primary">Save theme.json</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  #design-panel{position:fixed;right:18px;bottom:18px;z-index:9999;font-family:var(--font-body)}
+  #dp-toggle{width:52px;height:52px;border-radius:50%;border:0;background:var(--accent,#2f5cff);color:#fff;
+    font-size:22px;cursor:pointer;box-shadow:0 10px 30px rgba(15,25,55,.35)}
+  #dp-body{position:absolute;right:0;bottom:64px;width:280px;background:#fff;border:1px solid #e7eaf0;
+    border-radius:14px;box-shadow:0 30px 70px -20px rgba(15,25,55,.45);padding:14px;display:none}
+  #design-panel.open #dp-body{display:block}
+  .dp-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+  .dp-head b{font-family:var(--font-display);font-size:1rem}
+  .dp-head span{font-size:.7rem;color:#6b7484;text-transform:uppercase;letter-spacing:.12em}
+  .dp-scroll{max-height:52vh;overflow:auto;display:flex;flex-direction:column;gap:9px}
+  #dp-body label{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:.82rem;color:#0f1319}
+  #dp-body input[type=color]{width:42px;height:26px;border:1px solid #e7eaf0;border-radius:6px;background:none;padding:0;cursor:pointer}
+  #dp-body input[type=range]{flex:1;max-width:120px}
+  #dp-body select{font-size:.8rem;padding:4px}
+  .dp-scroll label.rng{flex-wrap:wrap}
+  .dp-scroll label.rng output{color:#6b7484;font-size:.74rem;margin-left:auto}
+  .dp-actions{display:flex;gap:8px;margin-top:12px}
+  .dp-actions button{flex:1;padding:9px;border-radius:8px;border:1px solid #e7eaf0;background:#f5f6f9;
+    font-size:.82rem;font-weight:600;cursor:pointer}
+  .dp-actions .primary{background:var(--accent,#2f5cff);color:#fff;border-color:transparent}
+</style>
+
+<script>
+  const panel = document.getElementById('design-panel');
+  if (panel) {
+  const defaults = JSON.parse(panel.dataset.defaults);
+  const KEY = 'portfolio-theme';
+  const FONTS = { grotesk:{d:"'Space Grotesk Variable'",b:"'Inter Variable'"}, inter:{d:"'Inter Variable'",b:"'Inter Variable'"}, system:{d:"system-ui",b:"system-ui"} };
+  const darken=(hex,a=0.18)=>{const n=hex.replace('#','');const p=i=>parseInt(n.slice(i,i+2),16);const d=c=>Math.max(0,Math.round(c*(1-a))).toString(16).padStart(2,'0');return '#'+d(p(0))+d(p(2))+d(p(4));};
+
+  function apply(t){
+    const r=document.documentElement.style;
+    r.setProperty('--accent',t.accent); r.setProperty('--accent-ink',darken(t.accent));
+    r.setProperty('--ink',t.ink); r.setProperty('--muted',t.muted);
+    r.setProperty('--bg',t.bg); r.setProperty('--bg-alt',t.bgAlt);
+    r.setProperty('--dark',t.dark); r.setProperty('--line',t.line);
+    r.setProperty('--radius',t.radius+'px'); r.setProperty('--maxw',t.maxWidth+'px');
+    const f=FONTS[t.fontPair]||FONTS.grotesk;
+    r.setProperty('--font-display',f.d+",'Inter Variable',system-ui,sans-serif");
+    r.setProperty('--font-body',f.b+",system-ui,sans-serif");
+    document.body.style.fontSize=t.baseSize+'px';
+    for(const el of panel.querySelectorAll('[data-k]')) el.value=t[el.dataset.k];
+    for(const o of panel.querySelectorAll('[data-o]')) o.textContent=t[o.dataset.o]+(o.dataset.o==='maxWidth'||o.dataset.o==='radius'?'px':o.dataset.o==='baseSize'?'px':'');
+  }
+  let state = {...defaults, ...(JSON.parse(localStorage.getItem(KEY)||'{}'))};
+  apply(state);
+
+  panel.querySelector('#dp-toggle').onclick=()=>panel.classList.toggle('open');
+  for(const el of panel.querySelectorAll('[data-k]')){
+    el.addEventListener('input',()=>{
+      const k=el.dataset.k; state[k]= (el.type==='range')?Number(el.value):el.value;
+      apply(state); localStorage.setItem(KEY,JSON.stringify(state));
+    });
+  }
+  panel.querySelector('#dp-reset').onclick=()=>{ state={...defaults}; localStorage.removeItem(KEY); apply(state); };
+  panel.querySelector('#dp-save').onclick=()=>{
+    const blob=new Blob([JSON.stringify(state,null,2)+'\n'],{type:'application/json'});
+    const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='theme.json'; a.click();
+    alert('Saved theme.json downloaded. Replace src/data/theme.json with it to make these styles permanent.');
+  };
+  }
+</script>

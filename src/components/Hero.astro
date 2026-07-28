@@ -1,0 +1,80 @@
+---
+import Nav from './Nav.astro';
+import home from '../data/home.json';
+const clips = home.heroClips;
+---
+<header class="hero">
+  <div class="stage" id="stage">
+    {clips.map((c, i) => (
+      <video class={"clip" + (i === 0 ? ' is-active' : '')} src={c.src} poster={c.poster}
+             autoplay muted loop playsinline preload={i === 0 ? 'auto' : 'metadata'}></video>
+    ))}
+    <div class="scrim"></div>
+  </div>
+
+  <Nav variant="hero" />
+
+  <div class="hero-body wrap">
+    <p class="kicker light">B.A.Sc., Mechanical Engineering</p>
+    <h1>Eric&nbsp;Li</h1>
+    <p class="lede">University of Toronto graduate, minor in Robotics and Mechatronics.
+      Over 6 years of experience with CAD and always ready to learn.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#work">View selected work</a>
+      <a class="btn btn-ghost" href="#contact">Get in touch</a>
+    </div>
+  </div>
+
+  <div class="hero-foot wrap">
+    <div class="dots" id="dots">
+      {clips.map((c, i) => <button class={"dot" + (i===0?' on':'')} data-i={i} aria-label={c.label}></button>)}
+    </div>
+    <a class="scroll-cue" href="#work">Scroll<span></span></a>
+  </div>
+</header>
+
+<style>
+  .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;color:#fff;overflow:hidden;background:#0c0f15}
+  .stage{position:absolute;inset:0;z-index:0}
+  .clip{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.1s ease}
+  .clip.is-active{opacity:1}
+  .scrim{position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(8,10,14,.55) 0%,rgba(8,10,14,.22) 40%,rgba(8,10,14,.5) 74%,rgba(8,10,14,.92) 100%);}
+
+  .hero-body{position:relative;z-index:2;margin-top:auto;padding-bottom:20px}
+  .kicker.light{color:#cdd7ff}
+  .kicker.light::before{background:#cdd7ff}
+  .hero-body h1{font-size:clamp(3.4rem,12vw,8.5rem);margin:16px 0 0;letter-spacing:-.04em;line-height:.92}
+  .lede{max-width:38ch;margin-top:20px;font-size:clamp(1rem,1.6vw,1.22rem);color:rgba(255,255,255,.9)}
+  .hero-actions{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap}
+
+  .hero-foot{position:relative;z-index:2;margin-top:auto;display:flex;align-items:center;
+    justify-content:space-between;padding-block:22px 30px}
+  .dots{display:flex;gap:10px}
+  .dot{width:30px;height:3px;border-radius:3px;border:0;background:rgba(255,255,255,.32);cursor:pointer;transition:.3s;padding:0}
+  .dot.on{background:#fff;width:46px}
+  .scroll-cue{font-family:var(--font-display);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;
+    color:rgba(255,255,255,.75);display:flex;align-items:center;gap:10px}
+  .scroll-cue span{width:1px;height:30px;background:linear-gradient(#fff,transparent);display:block;animation:drop 1.8s infinite}
+  @keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}
+    50.1%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+</style>
+
+<script>
+  const stage = document.getElementById('stage');
+  if (stage) {
+    const clips = [...stage.querySelectorAll('.clip')];
+    const dots = [...document.querySelectorAll('#dots .dot')];
+    let i = 0;
+    const show = (n) => {
+      clips.forEach((c, k) => c.classList.toggle('is-active', k === n));
+      dots.forEach((d, k) => d.classList.toggle('on', k === n));
+      i = n;
+    };
+    let timer = setInterval(() => show((i + 1) % clips.length), 5200);
+    dots.forEach((d) => d.addEventListener('click', () => {
+      clearInterval(timer); show(Number(d.dataset.i));
+      timer = setInterval(() => show((i + 1) % clips.length), 5200);
+    }));
+  }
+</script>

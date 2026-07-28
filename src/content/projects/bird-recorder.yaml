@@ -1,0 +1,23 @@
+title: Bird Species Recording System
+order: 8
+discipline: Mechatronics · Software
+tags: [Python, Data, Enclosure]
+location: Personal / Course Project
+timeframe: "2022"
+role: Designer & Developer
+summary: An environmental system that captures and graphs bird-species audio in the field.
+liveUrl: https://eric-li-portfolio.webflow.io/projects/environmental-bird-species-recording-system
+card: hero.jpg
+highlights:
+  - { icon: cpu, value: "Field", label: "Autonomous audio capture" }
+software: [Python]
+skills: [Data Analysis, Enclosure Design, Mechatronics]
+sections:
+  - type: lead
+    body: >
+      An environmental monitoring system that records bird-species audio in the field and
+      processes it into readable data with a Python graphing pipeline.
+  - type: full
+    src: hero.jpg
+    alt: Bird species recording software showcase
+    caption: Software showcase of the recording and graphing pipeline.

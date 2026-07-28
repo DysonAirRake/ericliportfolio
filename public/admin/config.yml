@@ -1,0 +1,142 @@
+# Decap CMS — visual editor for the portfolio.
+# LOCAL editing (no login): run `npm run edit` then open http://localhost:4321/admin/
+# When you deploy to GitHub, switch to the github backend (see README) to edit online.
+backend:
+  name: git-gateway
+  branch: main
+local_backend: true
+
+media_folder: "public/media"
+public_folder: "/media"
+
+collections:
+  # ---- Design / aesthetics: colors, fonts, spacing ----
+  - name: design
+    label: "Design"
+    files:
+      - name: theme
+        label: "Theme (colors, fonts, spacing)"
+        file: "src/data/theme.json"
+        fields:
+          - { label: "Accent colour", name: accent, widget: color }
+          - { label: "Text colour", name: ink, widget: color }
+          - { label: "Muted text", name: muted, widget: color }
+          - { label: "Background", name: bg, widget: color }
+          - { label: "Alt background", name: bgAlt, widget: color }
+          - { label: "Dark sections", name: dark, widget: color }
+          - { label: "Lines / borders", name: line, widget: color }
+          - { label: "Corner radius (px)", name: radius, widget: number, value_type: int, min: 0, max: 28 }
+          - { label: "Content width (px)", name: maxWidth, widget: number, value_type: int, min: 960, max: 1400 }
+          - { label: "Base text size (px)", name: baseSize, widget: number, value_type: float, min: 15, max: 18 }
+          - { label: "Font pairing", name: fontPair, widget: select, options: [grotesk, inter, system] }
+
+  # ---- Homepage composition: pick featured projects + order, edit hero clips ----
+  - name: homepage
+    label: "Homepage"
+    files:
+      - name: settings
+        label: "Homepage settings"
+        file: "src/data/home.json"
+        fields:
+          - label: "Featured projects (drag to reorder — these show as big blocks)"
+            name: featured
+            widget: list
+            field: { label: "Project slug", name: slug, widget: string }
+          - label: "Hero video clips"
+            name: heroClips
+            widget: list
+            fields:
+              - { label: "Video path", name: src, widget: string }
+              - { label: "Poster image path", name: poster, widget: string }
+              - { label: "Label", name: label, widget: string }
+
+  # ---- Project modules: one entry per project ----
+  - name: projects
+    label: "Projects"
+    label_singular: "Project"
+    folder: "src/content/projects"
+    extension: yml
+    format: yaml
+    create: true
+    identifier_field: title
+    summary: "{{fields.order}} · {{fields.title}}"
+    fields:
+      - { label: "Title", name: title, widget: string }
+      - { label: "Order (sort position)", name: order, widget: number, value_type: int, default: 99 }
+      - { label: "Discipline", name: discipline, widget: string }
+      - { label: "Tags (card chips)", name: tags, widget: list, default: [] }
+      - { label: "Employer", name: employer, widget: string, required: false }
+      - { label: "Location", name: location, widget: string, required: false }
+      - { label: "Timeframe", name: timeframe, widget: string }
+      - { label: "Role", name: role, widget: string, required: false }
+      - { label: "Summary (one line, on card)", name: summary, widget: text }
+      - { label: "Blurb (2–3 lines, featured block)", name: blurb, widget: text, required: false }
+      - { label: "Live URL", name: liveUrl, widget: string, required: false }
+      - { label: "Card image (filename in this project's media folder)", name: card, widget: string }
+      - label: "Gallery (featured-block slideshow)"
+        name: gallery
+        widget: list
+        required: false
+        fields:
+          - { label: "Image filename", name: img, widget: string, required: false }
+          - { label: "Video filename", name: video, widget: string, required: false }
+          - { label: "Poster filename", name: poster, widget: string, required: false }
+          - { label: "Alt text", name: alt, widget: string, required: false }
+      - label: "Highlight cards (icon stats)"
+        name: highlights
+        widget: list
+        required: false
+        fields:
+          - { label: "Icon", name: icon, widget: select, options: [layers, doc, gauge, cost, shield, road, check, ruler, team, cpu] }
+          - { label: "Value", name: value, widget: string }
+          - { label: "Label", name: label, widget: string }
+      - { label: "Software (left column)", name: software, widget: list, default: [] }
+      - { label: "Skills (right column)", name: skills, widget: list, default: [] }
+      - label: "Media gallery (clickable cards → lightbox)"
+        name: media
+        widget: list
+        required: false
+        summary: "{{fields.title}}"
+        fields:
+          - { label: "Image filename", name: img, widget: string, required: false }
+          - { label: "Video filename", name: video, widget: string, required: false }
+          - { label: "Poster filename", name: poster, widget: string, required: false }
+          - { label: "Title", name: title, widget: string }
+          - { label: "Subtitle", name: subtitle, widget: string, required: false }
+          - { label: "Description (shown in lightbox)", name: desc, widget: text, required: false }
+      - label: "Sections (detail-page body)"
+        name: sections
+        widget: list
+        types:
+          - label: "Lead paragraph"
+            name: lead
+            fields: [{ label: Body, name: body, widget: text }]
+          - label: "Text section"
+            name: text
+            fields:
+              - { label: Heading, name: heading, widget: string, required: false }
+              - { label: Body, name: body, widget: text }
+          - label: "Full image"
+            name: full
+            fields:
+              - { label: Image filename, name: src, widget: string }
+              - { label: Alt, name: alt, widget: string, required: false }
+              - { label: Caption, name: caption, widget: string, required: false }
+          - label: "Image pair"
+            name: pair
+            fields:
+              - label: Left
+                name: a
+                widget: object
+                fields: [{ label: Image, name: img, widget: string }, { label: Alt, name: alt, widget: string, required: false }]
+              - label: Right
+                name: b
+                widget: object
+                fields: [{ label: Image, name: img, widget: string }, { label: Alt, name: alt, widget: string, required: false }]
+              - { label: Caption, name: caption, widget: string, required: false }
+          - label: "Video"
+            name: video
+            fields:
+              - { label: Video filename, name: src, widget: string }
+              - { label: Poster filename, name: poster, widget: string, required: false }
+              - { label: Caption, name: caption, widget: string, required: false }

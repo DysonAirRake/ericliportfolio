@@ -1,0 +1,45 @@
+title: Pick-and-Place CNC Machine
+order: 16
+discipline: Mechanical Design · Drafting · Research
+tags: [SOLIDWORKS, Drafting, Team Lead]
+employer: University of Toronto
+location: "MIE243: Mechanical Engineering Design · Toronto, ON"
+timeframe: Nov 2022
+role: Team Lead (4)
+summary: A conceptual 600+ component model of a PCB-manufacturing pick-and-place CNC machine.
+liveUrl: https://eric-li-portfolio.webflow.io/projects/pick-and-place-cnc-machine
+card: assembly-render.jpg
+
+# INFO card
+impact: >
+  Engineering design and drafting of components within a conceptual assembly of a pick-and-place
+  PCB-manufacturing CNC machine — complete with cost analysis, drawings, market-feasibility
+  analysis and documentation. Student-led, and delivered beyond the initial project scope.
+
+highlights:
+  - { icon: layers, value: "600+", label: "3D components assembled in SOLIDWORKS" }
+
+# HERO SECTION — the drafting depth
+showcase:
+  heading: Drafting and CAD practice.
+  body: >
+    Beyond the conceptual assembly, the project produced a full drawing package: dimensioned part
+    drawings, a complete bill of materials, and exploded assembly views — like this belt-drive
+    actuator — supported by cost and market-feasibility research.
+  img: bda-exploded.jpg
+
+software:
+  - { name: SOLIDWORKS, desc: "Engineering drawings, BOM generation, assembly modeling and detailing." }
+skills: [Machine Design, Team Leadership, Cost Analysis, Technical Writing, Technical Drafting]
+
+# PROJECT GALLERY — renders + drawings
+media:
+  - { img: assembly-render.jpg, title: "Full Assembly", subtitle: "Team-of-four design", desc: "The complete conceptual pick-and-place machine assembly rendered in SOLIDWORKS." }
+  - { img: reel-feeder.jpg, title: "SMT Reel Feeders", subtitle: "Component feed", desc: "The bank of SMT reel feeders that supply components to the placement head." }
+  - { img: assembly-side.jpg, title: "Side View", subtitle: "Assembly render", desc: "Side render of the full machine assembly." }
+  - { img: hero.jpg, title: "Drive Train Detail", subtitle: "Annotated detail", desc: "Annotated SOLIDWORKS detail of the belt drive train." }
+  - { img: dwg-scissor-clamp.jpg, title: "Scissor Front Clamp", subtitle: "Assembly drawing", desc: "Drawing of the scissor front-clamp PCB-holding assembly." }
+  - { img: dwg-scissor-base.jpg, title: "Scissor Base", subtitle: "Part drawing", desc: "Dimensioned drawing of the scissor base." }
+  - { img: dwg-motor-mount.jpg, title: "Motor Mount", subtitle: "Part drawing", desc: "Dimensioned drawing of the stepper-motor mount." }
+  - { img: dwg-timing-belt.jpg, title: "Timing Belt", subtitle: "Part drawing", desc: "Drawing of the timing-belt component." }
+  - { img: layout-sketch.jpg, title: "Layout Concept", subtitle: "Early planning", desc: "Early design-layout planning sketch for the machine." }

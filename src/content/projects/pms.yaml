@@ -1,0 +1,25 @@
+title: Lab Management Software
+order: 6
+discipline: Software · UI / UX
+tags: [Python, PyQt, Figma]
+employer: Infinity Testing Solutions
+location: Mississauga, ON
+timeframe: "2022"
+role: Software Intern
+summary: A GUI prototype tracking 1,500+ instruments across 300+ client testing projects.
+liveUrl: https://eric-li-portfolio.webflow.io/projects/project-management-software-prototype
+card: hero.jpg
+highlights:
+  - { icon: cpu,    value: "1,500+", label: "Instruments tracked" }
+  - { icon: layers, value: "300+",   label: "Client projects managed" }
+software: [Python, PyQt, C++, Figma]
+skills: [UI/UX Design, Software Architecture, Documentation]
+sections:
+  - type: lead
+    body: >
+      Built a Python/PyQt GUI (designed in Figma) to track 1,500+ instruments across 300+
+      client testing projects, resolving equipment-scheduling conflicts.
+  - type: full
+    src: hero.jpg
+    alt: Lab management software UI mockups
+    caption: GUI screens and component library designed for the app.

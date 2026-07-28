@@ -1,0 +1,35 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+---
+<Base title="Résumé — Eric Li" description="Eric Li — Mechanical Design Engineer résumé.">
+  <div class="viewer">
+    <div class="bar">
+      <a class="close" href="/">&larr; Back to site</a>
+      <span class="ttl">Eric Li — Résumé</span>
+      <a class="dl" href="/resume.pdf" download><Icon name="doc" size={16} />Download PDF</a>
+    </div>
+    <div class="stage">
+      <div class="sheet">
+        <img src="/media/site/resume-preview.png" alt="Eric Li résumé" />
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .viewer{min-height:100svh;display:flex;flex-direction:column;background:#1b1f27}
+  .bar{position:sticky;top:0;display:flex;align-items:center;justify-content:space-between;gap:16px;
+    padding:14px var(--pad);background:var(--dark);color:#fff;z-index:5}
+  .close{font-family:var(--font-display);font-size:.85rem;color:rgba(255,255,255,.82)}
+  .close:hover{color:#fff}
+  .ttl{font-family:var(--font-display);font-weight:600;font-size:.9rem;color:#fff}
+  .dl{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-display);font-weight:600;
+    font-size:.85rem;background:var(--accent);color:#fff;padding:9px 16px;border-radius:100px}
+  .dl:hover{background:var(--accent-ink)}
+  .stage{flex:1;display:flex;justify-content:center;padding:clamp(14px,3vw,40px)}
+  .sheet{width:min(820px,100%);height:fit-content;background:#fff;border-radius:8px;overflow:hidden;
+    box-shadow:0 30px 70px -28px rgba(0,0,0,.6)}
+  .sheet img{width:100%;display:block}
+  @media(max-width:600px){.ttl{display:none}}
+</style>

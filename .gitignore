@@ -1,0 +1,30 @@
+# raw source stash — huge original videos/images, NOT used by the built site.
+# Kept locally as the master copy; the site only uses public/media (compressed).
+raw_project_data/
+
+# dependencies
+node_modules/
+
+# build output (Cloudflare rebuilds this; wrangler direct-upload regenerates it too)
+dist/
+.astro/
+
+# environment / secrets
+.env
+.env.*
+!.env.example
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# wrangler / Cloudflare local state
+.wrangler/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

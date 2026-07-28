@@ -1,0 +1,24 @@
+title: Scoop Quick-Attach Hitch
+order: 7
+discipline: Mechanical Design · FEA
+tags: [Inventor, FEA]
+employer: Nutrien
+location: Cory Potash Mine · Saskatoon, SK
+timeframe: 2023 – 2024
+role: Design Engineer
+summary: A stress-validated quick-attach hitch for underground scoop equipment.
+liveUrl: https://eric-li-portfolio.webflow.io/projects/scoop-quick-attach-hitch
+card: hero.jpg
+highlights:
+  - { icon: shield, value: "FEA", label: "Stress-validated design" }
+software: [Autodesk Inventor]
+skills: [Mechanical Design, Finite Element Analysis]
+sections:
+  - type: lead
+    body: >
+      Designed a quick-attach hitch for underground scoop equipment, using FEA to validate
+      the connection under load before fabrication.
+  - type: full
+    src: hero.jpg
+    alt: Scoop quick-attach hitch model
+    caption: Quick-attach hitch for rapid tool changes on underground scoops.

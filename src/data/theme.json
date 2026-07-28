@@ -1,0 +1,13 @@
+{
+  "accent": "#2f5cff",
+  "ink": "#0f1319",
+  "muted": "#6b7484",
+  "bg": "#ffffff",
+  "bgAlt": "#f5f6f9",
+  "dark": "#0c0f15",
+  "line": "#e7eaf0",
+  "radius": 14,
+  "maxWidth": 1180,
+  "baseSize": 16,
+  "fontPair": "grotesk"
+}

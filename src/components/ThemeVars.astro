@@ -1,0 +1,33 @@
+---
+// Injects the editable theme (src/data/theme.json) as CSS variables.
+// Change theme.json (or use the Design Panel / CMS) to restyle the whole site.
+import theme from '../data/theme.json';
+const FONTS = {
+  grotesk: { d: "'Space Grotesk Variable'", b: "'Inter Variable'" },
+  inter:   { d: "'Inter Variable'",         b: "'Inter Variable'" },
+  system:  { d: "system-ui",                b: "system-ui" },
+};
+function darken(hex, amt = 0.18) {
+  const n = hex.replace('#', '');
+  const r = parseInt(n.slice(0, 2), 16), g = parseInt(n.slice(2, 4), 16), b = parseInt(n.slice(4, 6), 16);
+  const d = (c) => Math.max(0, Math.round(c * (1 - amt))).toString(16).padStart(2, '0');
+  return `#${d(r)}${d(g)}${d(b)}`;
+}
+const f = FONTS[theme.fontPair] || FONTS.grotesk;
+const css = `:root{
+  --accent:${theme.accent};
+  --accent-ink:${darken(theme.accent)};
+  --ink:${theme.ink};
+  --muted:${theme.muted};
+  --bg:${theme.bg};
+  --bg-alt:${theme.bgAlt};
+  --dark:${theme.dark};
+  --line:${theme.line};
+  --radius:${theme.radius}px;
+  --maxw:${theme.maxWidth}px;
+  --font-display:${f.d},'Inter Variable',system-ui,sans-serif;
+  --font-body:${f.b},system-ui,-apple-system,sans-serif;
+}
+body{font-size:${theme.baseSize}px}`;
+---
+<style set:html={css}></style>

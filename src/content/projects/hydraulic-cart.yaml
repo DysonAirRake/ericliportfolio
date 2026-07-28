@@ -1,0 +1,21 @@
+title: Hydraulic Pressure Intensifier Cart
+order: 15
+discipline: Hydraulics · Control Systems
+tags: [Servo Motors, Hydraulics]
+employer: Infinity Testing Solutions
+location: Mississauga, ON
+timeframe: "2022"
+role: Engineering Intern
+summary: Brief showcase of my involvement in an engineering laboratory testing system.
+blurb: >
+  A brief showcase of my involvement building a closed-loop hydraulic pressure intensifier
+  cart for an engineering testing laboratory.
+card: working.jpg
+highlights:
+  - { icon: gauge, value: "12,000 psi", label: "Closed-loop pressure" }
+  - { icon: cpu,   value: "LabVIEW",   label: "Control system" }
+software: [NI LabVIEW]
+skills: [Hydraulics, Control Systems, Assembly]
+media:
+  - { img: working.jpg, title: "Working Cart", subtitle: "Lab testing system", desc: "The hydraulic pressure intensifier cart in the testing lab." }
+  - { img: labview.jpg, title: "LabVIEW Control", subtitle: "Control interface", desc: "The LabVIEW control system driving the closed-loop pressure intensifier." }

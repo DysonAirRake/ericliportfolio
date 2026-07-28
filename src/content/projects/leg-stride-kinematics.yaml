@@ -1,0 +1,41 @@
+title: Leg Stride Kinematics
+order: 13
+discipline: Mechanical Design · Dynamic & Static Analysis
+tags: [SOLIDWORKS, Inventor, MATLAB, Team Lead]
+employer: University of Toronto
+location: "MIE301: Kinematics and Dynamics of Machines · Toronto, ON"
+timeframe: "2024"
+summary: Study and analysis of the common walking motion using mechanical design, force analysis, and kinematics.
+blurb: >
+  A study of the common human walking motion — combining mechanical design, force analysis
+  and kinematics to model and simulate leg stride.
+card: sim.jpg
+cardMedia:
+  - { video: sim.mp4, poster: sim.jpg }
+
+highlights:
+  - { icon: gear,  value: "Kinematics", label: "Motion analysis" }
+  - { icon: gauge, value: "Static + Dynamic", label: "Force analysis" }
+
+# HERO SECTION — text + a 3-image slideshow
+showcase:
+  heading: Behind the scenes.
+  body: >
+    Drafting, physics, and CAD prototyping ultimately packaged into MATLAB for study and analysis.
+  slides:
+    - { img: new-design.jpg, title: "New Design", caption: "Refined leg-linkage design" }
+    - { img: initial-leg-links.jpg, title: "Initial Leg Links", caption: "Early linkage layout" }
+    - { img: equation-setup.jpg, title: "Equation Setup", caption: "Kinematic equation derivation" }
+
+software: [SOLIDWORKS, Autodesk Inventor, MATLAB]
+skills: [Kinematics, Dynamic Analysis, Static Analysis, Team Leadership]
+
+# PROJECT GALLERY — remaining content
+media:
+  - { video: sim.mp4, poster: sim.jpg, title: "Dynamic Simulation", subtitle: "Inventor motion study", desc: "Inventor dynamic simulation of the leg stride mechanism." }
+  - { video: pos.mp4, poster: pos.jpg, title: "Position Animation", subtitle: "MATLAB trace", desc: "MATLAB animation tracing the stride position over the gait cycle." }
+  - { img: velocity-analysis.jpg, title: "Velocity Analysis", subtitle: "MATLAB plot", desc: "Velocity analysis of the leg-stride linkage." }
+  - { img: position-analysis.jpg, title: "Position Analysis", subtitle: "MATLAB plot", desc: "Position analysis of the leg-stride linkage." }
+  - { img: original-analysis.jpg, title: "Original Analysis", subtitle: "Hand analysis", desc: "Original analysis of the walking motion." }
+  - { img: original-trace.jpg, title: "Original Trace", subtitle: "Motion trace", desc: "Traced path of the reference walking motion." }
+  - { img: rb-vs-path.jpg, title: "rB vs Path", subtitle: "Trajectory comparison", desc: "Comparison of point rB against the target path." }

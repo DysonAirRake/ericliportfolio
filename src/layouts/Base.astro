@@ -1,0 +1,29 @@
+---
+import '../styles/global.css';
+import ThemeVars from '../components/ThemeVars.astro';
+import DesignPanel from '../components/DesignPanel.astro';
+const { title = 'Eric Li — Mechanical Design Engineer', description = 'Mechanical design engineer — industrial CAD, FEA, robotics and prototyping.' } = Astro.props;
+const SHOW_DESIGN_PANEL = import.meta.env.DEV; // visible only during `npm run dev`
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <ThemeVars />
+</head>
+<body>
+  <slot />
+  {SHOW_DESIGN_PANEL && <DesignPanel />}
+  <script>
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      }
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+    document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el));
+  </script>
+</body>
+</html>

@@ -1,0 +1,484 @@
+---
+import Base from './Base.astro';
+import Nav from '../components/Nav.astro';
+import Icon from '../components/Icon.astro';
+import Sections from '../components/media/Sections.astro';
+import MediaGallery from '../components/MediaGallery.astro';
+import Slideshow from '../components/Slideshow.astro';
+import Footer from '../components/Footer.astro';
+const { project: d, slug, prev, next } = Astro.props;
+const base = `/media/projects/${slug}/`;
+const L = '/media/site/logos/';
+
+// software name -> logo file
+const LOGOS = {
+  'Autodesk Inventor':'inventor.png','Inventor':'inventor.png','SOLIDWORKS':'solidworks.png','SOLIDWORKS FEA':'solidworks.png',
+  'AutoCAD':'autocad.png','Navisworks':'navisworks.png','Fusion 360':'fusion360.png','Excel':'excel.png',
+  'Python':'python.png','C++':'cpp.png','Figma':'figma.png','Meridian':'meridian.png','MATLAB':'matlab.png',
+  'NI LabVIEW':'labview.png','LabVIEW':'labview.png','Autodesk EAGLE':'eagle.png',
+};
+// employer -> company logo
+const COMPANY = {'Nutrien':'nutrien.png','UofT Robotics for Space Exploration':'uoft.png','University of Toronto':'uoft.png','Infinity Testing Solutions':'infinity.png'};
+// skill -> icon key
+const SKILL_ICON = {
+  'Structural Analysis':'gauge','Finite Element Analysis':'gauge','FEA':'gauge','Project Management':'team','Procurement':'cost',
+  'Install Oversight':'check','Reverse Engineering':'wrench','Large-Assembly Modeling':'layers','Mechanical Simulation':'cpu',
+  'Technical Drafting':'doc','Safety Design':'shield','Prototyping':'gear','Stakeholder Presentation':'team','Robotics Design':'cpu',
+  '3D Printing':'layers','Team Collaboration':'team','Machine Design':'gear','Team Leadership':'team','Cost Analysis':'cost',
+  'Technical Writing':'doc','UI/UX Design':'cpu','Software Architecture':'layers','Documentation':'doc','Mechanical Design':'gear',
+  'Data Analysis':'cpu','Enclosure Design':'layers','Mechatronics':'cpu',
+  'Communication':'team','Industrial Rigging/Slinging':'weight','Rigging & Slinging Documentation':'weight',
+  'Electronics Design':'circuit','Circuit Simulation':'monitor','PCB Layout':'cpu','Soldering & Prototyping':'gear','Analog Filter Design':'gauge',
+  'Mechanical Engineering Drafting':'doc','GD&T':'ruler','Process Engineering':'gear','Mechanical Drafting':'doc',
+  'Documentation Management':'doc','Design & FEA':'gauge','Safety Engineering':'shield',
+};
+const software = (d.software || []).map((s) => (typeof s === 'string' ? { name: s } : s));
+const companyLogo = d.companyLogo ? L + d.companyLogo : (d.employer && COMPANY[d.employer] ? L + COMPANY[d.employer] : null);
+
+const heroVid = d.gallery?.find((g) => g.video);
+const heroImg = base + d.card;
+const sc = d.showcase;
+const infoText = d.impact || d.blurb || d.summary;
+// escape HTML then add a zero-width break after slashes so long values wrap cleanly
+const escVal = (v) => v.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\//g, '/&#8203;');
+---
+<Base title={`${d.title} — Eric Li`} description={d.summary}>
+  <Nav variant="solid" />
+
+  <header class="phero">
+    <img src={heroImg} alt={d.title} />
+    <div class="scrim"></div>
+    <div class="phero-in wrap">
+      <a class="back" href="/#work">&larr; Selected work</a>
+      <p class="kicker light">{d.discipline}</p>
+      <h1>{d.title}</h1>
+      <div class="facts">
+        {d.location && <span>{d.location}</span>}
+        <span>{d.timeframe}</span>
+        {d.role && <span>{d.role}</span>}
+      </div>
+    </div>
+  </header>
+
+  {companyLogo && (
+    <div class="completed"><div class="wrap ca" data-reveal>
+      <span>Completed at</span><img src={companyLogo} alt={d.employer} />
+    </div></div>
+  )}
+
+  {(d.impact || d.highlights.length > 0) && (
+    <section class="impacts"><div class="wrap wrap-wide" data-reveal>
+      <div class="section-head"><span class="num">Project summary &amp; impacts</span></div>
+      <div class="imp-grid" style={`--cw:${Math.min(13, Math.max(8, ...d.highlights.map((h) => h.value.length)))}ch`}>
+        <div class="info-card">
+          <span class="info-ic"><Icon name="info" size={26} /></span>
+          <h3>Info</h3>
+          <p>{infoText}</p>
+        </div>
+        {d.highlights.map((h) => (
+          <div class="callout">
+            <span class="co-ic"><Icon name={h.icon} size={30} /></span>
+            <b set:html={escVal(h.value)}></b>
+            <span class="co-l">{h.label}</span>
+            {h.desc && <p>{h.desc}</p>}
+          </div>
+        ))}
+      </div>
+    </div></section>
+  )}
+
+  {sc && sc.media && sc.media.length > 0 && (
+    <section class="showcase"><div class="wrap wrap-wide" data-reveal>
+      <div class={"sc-multi" + ((sc.heading || sc.body) ? "" : " no-text")} style={`--n:${sc.media.length}`}>
+        {(sc.heading || sc.body) && (
+          <div class="sc-text">
+            {sc.heading && <h2>{sc.heading}</h2>}
+            {sc.body && <p>{sc.body}</p>}
+            {sc.button && <a class="sc-btn" href={sc.button.href}>{sc.button.label}<span>&rarr;</span></a>}
+          </div>
+        )}
+        {sc.media.map((m) => (
+          <figure class="sc-col">
+            {m.youtube
+              ? <button class="yt-thumb" data-yt={m.youtube} aria-label={`Play: ${m.label || m.title || d.title}`}>
+                  <img src={`https://img.youtube.com/vi/${m.youtube}/hqdefault.jpg`} alt={m.label || m.title || d.title} loading="lazy" />
+                  <span class="yt-play">&#9654;</span>
+                </button>
+              : m.vimeo
+              ? <div class="sc-media"><iframe src={`https://player.vimeo.com/video/${m.vimeo}`} title={m.title || d.title} loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+              : <div class={"sc-media" + (m.img ? " contain" : "")}>
+                  {m.video
+                    ? <video src={base + m.video} poster={m.poster ? base + m.poster : undefined} controls muted loop playsinline></video>
+                    : <img src={base + m.img} alt={m.label || m.title || d.title} />}
+                </div>}
+            {m.title && <h4 class="sc-title">{m.title}</h4>}
+            {m.caption && <p class="sc-cap">{m.caption}</p>}
+            {m.label && !m.title && <figcaption>{m.label}</figcaption>}
+          </figure>
+        ))}
+      </div>
+    </div></section>
+  )}
+
+  {sc && !(sc.media && sc.media.length > 0) && (
+    <section class="showcase"><div class="wrap sc-grid" data-reveal>
+      <div class="sc-text">
+        {sc.heading && <h2>{sc.heading}</h2>}
+        <p>{sc.body}</p>
+        {sc.button && <a class="sc-btn" href={sc.button.href}>{sc.button.label}<span>&rarr;</span></a>}
+      </div>
+      {sc.slides && sc.slides.length > 0
+        ? <Slideshow items={sc.slides} base={base} ratio="16 / 10" />
+        : <div class="sc-media">
+            {sc.youtube
+              ? <iframe src={`https://www.youtube-nocookie.com/embed/${sc.youtube}`} title={sc.heading || d.title} loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              : sc.video
+              ? <video src={base + sc.video} poster={sc.poster ? base + sc.poster : undefined} controls muted loop playsinline></video>
+              : <img src={base + sc.img} alt={sc.heading || d.title} />}
+          </div>}
+    </div></section>
+  )}
+
+  {d.heroes && d.heroes.map((h) => (
+    <section class="showcase alt"><div class={"wrap sc-grid" + (h.flip ? " flip" : "")} data-reveal>
+      <div class="sc-text">
+        {h.heading && <h2>{h.heading}</h2>}
+        {h.body && <p>{h.body}</p>}
+        {h.button && <a class="sc-btn" href={h.button.href}>{h.button.label}<span>&rarr;</span></a>}
+      </div>
+      <div class="sc-media">
+        {h.youtube
+          ? <iframe src={`https://www.youtube-nocookie.com/embed/${h.youtube}`} title={h.heading || d.title} loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          : h.video
+          ? <video src={base + h.video} poster={h.poster ? base + h.poster : undefined} controls muted loop playsinline></video>
+          : <img src={base + h.img} alt={h.heading || d.title} />}
+      </div>
+    </div></section>
+  ))}
+
+  {d.features && d.features.map((f, i) => (
+    <section class={"feat-sec" + (i === 0 ? " first" : "")}><div class="wrap wrap-wide feat" data-reveal>
+      <div class="feat-text">
+        <h3>{f.title}</h3>
+        {f.callouts.length > 0 && (
+          <div class="feat-mini">
+            {f.callouts.map((c) => (
+              <div class="fm">
+                <span class="fmi"><Icon name={c.icon} size={24} /></span>
+                <b set:html={escVal(c.value)}></b>
+                <span class="fml">{c.label}</span>
+              </div>
+            ))}
+          </div>
+        )}
+        <hr class="feat-div" />
+        {f.body && <p class="feat-desc">{f.body}</p>}
+      </div>
+      <div class="feat-media">
+        <Slideshow items={f.media} base={base} ratio="16 / 10" />
+      </div>
+    </div></section>
+  ))}
+
+  {d.subprojects && d.subprojects.length > 0 && (
+    <section class="subs"><div class="wrap wrap-wide" data-reveal>
+      {d.subprojectsIntro && <p class="subs-intro">{d.subprojectsIntro}</p>}
+      <div class="subs-grid">
+        {d.subprojects.map((sp) => (
+          <figure class="sub">
+            {sp.media && sp.media.length > 0
+              ? <Slideshow items={sp.media} base={base} ratio="4 / 3" />
+              : <div class="sub-media">
+                  {sp.video
+                    ? <video src={base + sp.video} poster={sp.poster ? base + sp.poster : undefined} controls muted loop playsinline></video>
+                    : <img src={base + sp.img} alt={sp.title} loading="lazy" />}
+                </div>}
+            <h4>{sp.title}</h4>
+            <p>{sp.body}</p>
+          </figure>
+        ))}
+      </div>
+    </div></section>
+  )}
+
+  {d.sections.length > 0 && <main class="wrap"><Sections sections={d.sections} slug={slug} /></main>}
+
+  <div id="gallery"></div>
+  <MediaGallery media={d.media} slug={slug} heading="Project gallery" />
+
+  {(software.length > 0 || d.skills.length > 0) && (
+    <section class="built"><div class="wrap" data-reveal>
+      <div class="section-head"><span class="num">How I did the project</span><h2>Software &amp; skills</h2></div>
+      <div class="cols">
+        <div class="col">
+          <p class="col-h">Software</p>
+          <ul class="sw">
+            {software.map((s) => (
+              <li>
+                <span class="logo">{LOGOS[s.name] ? <img src={L + LOGOS[s.name]} alt={s.name} /> : <Icon name="gear" size={26} />}</span>
+                <div><b>{s.name}</b>{s.desc && <span>{s.desc}</span>}</div>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="col">
+          <p class="col-h">Technical &amp; soft skills</p>
+          <ul class="sk">
+            {d.skills.map((s) => (
+              <li><span class="sk-ic"><Icon name={SKILL_ICON[s] || 'check'} size={22} /></span><b>{s}</b></li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      {d.liveUrl && <a class="arrow-link" href={d.liveUrl}>View this project on the live site<span>&nearr;</span></a>}
+    </div></section>
+  )}
+
+  <nav class="pager wrap">
+    {prev ? <a href={`/projects/${prev.slug}/`} class="pg"><span>← Previous</span><b>{prev.title}</b></a> : <span></span>}
+    {next ? <a href={`/projects/${next.slug}/`} class="pg r"><span>Next →</span><b>{next.title}</b></a> : <span></span>}
+  </nav>
+
+  <div class="yt-lb" id="yt-lb" hidden>
+    <button class="yt-lb-close" aria-label="Close">&#10005;</button>
+    <div class="yt-stage"></div>
+  </div>
+
+  <div class="slb" id="slb" hidden>
+    <button class="slb-close" aria-label="Close">&#10005;</button>
+    <button class="slb-nav prev" aria-label="Previous">&#8249;</button>
+    <button class="slb-nav next" aria-label="Next">&#8250;</button>
+    <div class="slb-stage"></div>
+    <div class="slb-meta"><b></b><p></p></div>
+  </div>
+
+  <Footer />
+</Base>
+
+<script>
+  const lb = document.getElementById('yt-lb');
+  if (lb) {
+    const stage = lb.querySelector('.yt-stage');
+    const open = (id) => {
+      stage.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+      lb.hidden = false; document.body.style.overflow = 'hidden';
+    };
+    const close = () => { stage.innerHTML = ''; lb.hidden = true; document.body.style.overflow = ''; };
+    document.querySelectorAll('.yt-thumb').forEach((b) =>
+      b.addEventListener('click', () => open(b.dataset.yt)));
+    lb.querySelector('.yt-lb-close').addEventListener('click', close);
+    lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
+    document.addEventListener('keydown', (e) => { if (!lb.hidden && e.key === 'Escape') close(); });
+  }
+</script>
+
+<script>
+  // Inline slideshows: auto-advance + open shared lightbox scoped to the clicked slideshow.
+  const slb = document.getElementById('slb');
+  if (slb) {
+    const stage = slb.querySelector('.slb-stage');
+    const mb = slb.querySelector('.slb-meta b'), mp = slb.querySelector('.slb-meta p');
+    let group = [], cur = 0;
+    const render = (i) => {
+      cur = (i + group.length) % group.length;
+      const c = group[cur];
+      stage.innerHTML = c.dataset.type === 'video'
+        ? `<video src="${c.dataset.src}" poster="${c.dataset.poster}" controls autoplay playsinline></video>`
+        : `<img src="${c.dataset.src}" alt="">`;
+      mb.textContent = c.dataset.title || '';
+      mp.textContent = c.dataset.cap || '';
+    };
+    const open = (slides, i) => { group = slides; render(i); slb.hidden = false; document.body.style.overflow = 'hidden'; };
+    const close = () => { slb.hidden = true; stage.innerHTML = ''; document.body.style.overflow = ''; };
+    slb.querySelector('.slb-close').addEventListener('click', close);
+    slb.querySelector('.prev').addEventListener('click', () => render(cur - 1));
+    slb.querySelector('.next').addEventListener('click', () => render(cur + 1));
+    slb.addEventListener('click', (e) => { if (e.target === slb) close(); });
+    document.addEventListener('keydown', (e) => {
+      if (slb.hidden) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowRight') render(cur + 1);
+      if (e.key === 'ArrowLeft') render(cur - 1);
+    });
+
+    document.querySelectorAll('[data-show]').forEach((show) => {
+      const slides = [...show.querySelectorAll('.show-slide')];
+      const dots = [...show.querySelectorAll('.sdot')];
+      slides.forEach((s, i) => s.addEventListener('click', () => open(slides, i)));
+      if (slides.length < 2) return;
+      let i = 0, t = null;
+      const go = (n) => {
+        i = (n + slides.length) % slides.length;
+        slides.forEach((s, k) => s.classList.toggle('on', k === i));
+        dots.forEach((d, k) => d.classList.toggle('on', k === i));
+      };
+      const start = () => { stop(); t = setInterval(() => go(i + 1), 3600); };
+      const stop = () => { if (t) clearInterval(t); t = null; };
+      const step = (e, d) => { e.stopPropagation(); go(i + d); start(); };  // manual nav restarts the timer
+      show.querySelector('.sprev')?.addEventListener('click', (e) => step(e, -1));
+      show.querySelector('.snext')?.addEventListener('click', (e) => step(e, 1));
+      dots.forEach((dot, k) => dot.addEventListener('click', () => { go(k); start(); }));
+      start();
+      show.addEventListener('mouseenter', stop);
+      show.addEventListener('mouseleave', start);
+    });
+  }
+</script>
+
+<style>
+  .phero{position:relative;min-height:60vh;display:flex;align-items:flex-end;color:#fff;overflow:hidden;background:#0c0f15}
+  .phero>video,.phero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .phero .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,10,14,.2),rgba(8,10,14,.82))}
+  .phero-in{position:relative;z-index:2;padding-block:44px}
+  .back{font-family:var(--font-display);font-size:.82rem;color:rgba(255,255,255,.8)}
+  .kicker.light{color:#cdd7ff;margin-top:20px}
+  .kicker.light::before{background:#cdd7ff}
+  .phero h1{font-size:clamp(2.4rem,6.5vw,5rem);margin-top:14px;letter-spacing:-.03em;max-width:16ch}
+  .facts{display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:20px;font-size:.95rem;color:rgba(255,255,255,.85)}
+  .facts span+span::before{content:"·";margin-right:14px;margin-left:-14px;color:rgba(255,255,255,.5)}
+
+  /* Completed at */
+  .completed{border-bottom:1px solid var(--line)}
+  .ca{display:flex;align-items:center;justify-content:center;gap:18px;padding-block:26px}
+  .ca span{font-family:var(--font-display);font-size:1.05rem;color:var(--ink-soft)}
+  .ca img{height:34px;width:auto}
+
+  /* Showcase (hero section) */
+  .showcase{padding-block:clamp(26px,3.4vw,44px)}
+  .sc-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,5vw,64px);align-items:center}
+  .sc-text h2{font-size:clamp(1.5rem,2.8vw,2.15rem);letter-spacing:-.03em;margin-bottom:16px}
+  .sc-text p{font-size:1.1rem;color:var(--ink-soft);max-width:46ch}
+  .sc-btn{display:inline-flex;align-items:center;gap:.5em;margin-top:24px;background:var(--ink);color:#fff;
+    font-family:var(--font-display);font-weight:600;font-size:.92rem;padding:13px 24px;border-radius:100px;transition:.2s}
+  .sc-btn:hover{background:#000;gap:.85em}
+  .sc-media{border-radius:var(--radius);overflow:hidden;background:var(--bg-alt);box-shadow:0 24px 56px -30px rgba(15,25,55,.4)}
+  .sc-media video,.sc-media img{width:100%;display:block;aspect-ratio:16/10;object-fit:cover}
+  .sc-media iframe{width:100%;display:block;aspect-ratio:16/9;border:0}
+  .sc-grid.flip{grid-template-columns:1.1fr .9fr}
+  .sc-grid.flip .sc-text{order:2}
+  .showcase.alt{border-top:1px solid var(--line)}
+  @media(max-width:820px){.sc-grid,.sc-grid.flip{grid-template-columns:1fr;gap:22px}.sc-grid.flip .sc-text{order:0}}
+
+  /* Multi-column hero: text + N media columns */
+  .sc-multi{display:grid;grid-template-columns:1.15fr repeat(var(--n),1fr);gap:clamp(20px,3vw,40px);align-items:center}
+  .sc-multi .sc-text h2{font-size:clamp(1.4rem,2.5vw,2rem);letter-spacing:-.03em;margin-bottom:14px}
+  .sc-multi .sc-text p{font-size:1.02rem;color:var(--ink-soft)}
+  .sc-multi.no-text{grid-template-columns:repeat(var(--n),1fr)}
+  .sc-col{margin:0;display:flex;flex-direction:column}
+  .sc-col figcaption{font-family:var(--font-display);font-weight:600;font-size:.82rem;color:var(--muted);
+    text-align:center;margin-top:12px;letter-spacing:.02em}
+  .sc-col .sc-media iframe{width:100%;display:block;aspect-ratio:16/9;border:0}
+  .sc-title{font-family:var(--font-display);font-size:1.2rem;letter-spacing:-.02em;margin-top:16px}
+  .sc-cap{font-size:.94rem;color:var(--ink-soft);line-height:1.55;margin-top:8px}
+  /* uncropped image in a hero column (e.g. the LinkedIn post shown at natural size) */
+  .sc-media.contain{aspect-ratio:auto;background:var(--bg-alt);display:flex;align-items:center;justify-content:center}
+  .sc-media.contain img{width:100%;height:auto;aspect-ratio:auto;object-fit:contain}
+  /* YouTube thumbnail + play button (opens lightbox) */
+  .yt-thumb{position:relative;border:0;padding:0;cursor:pointer;border-radius:var(--radius);overflow:hidden;
+    aspect-ratio:16/9;background:#000;box-shadow:0 24px 56px -30px rgba(15,25,55,.4);display:block;width:100%}
+  .yt-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s,filter .3s}
+  .yt-thumb:hover img{transform:scale(1.04);filter:brightness(.82)}
+  .yt-play{position:absolute;inset:0;margin:auto;width:66px;height:66px;border-radius:50%;
+    background:rgba(220,30,30,.92);color:#fff;display:grid;place-items:center;font-size:24px;padding-left:5px;
+    box-shadow:0 8px 26px -6px rgba(0,0,0,.5);transition:transform .25s}
+  .yt-thumb:hover .yt-play{transform:scale(1.1)}
+  .yt-lb{position:fixed;inset:0;z-index:1000;background:rgba(6,8,12,.92);display:flex;align-items:center;
+    justify-content:center;padding:clamp(16px,4vw,60px)}
+  .yt-lb[hidden]{display:none}
+  .yt-stage{width:min(1100px,92vw);aspect-ratio:16/9}
+  .yt-stage iframe{width:100%;height:100%;border:0;border-radius:10px;background:#000}
+  .yt-lb-close{position:absolute;top:18px;right:22px;background:none;border:0;color:#fff;font-size:26px;cursor:pointer;opacity:.85}
+  .yt-lb-close:hover{opacity:1}
+  @media(max-width:820px){.sc-multi{grid-template-columns:1fr;gap:24px}}
+
+  /* Project Summary & Impacts */
+  .impacts{background:var(--bg-alt);border-block:1px solid var(--line);padding-block:clamp(26px,3.4vw,44px)}
+  .impacts .section-head{margin-bottom:clamp(14px,2vw,22px)}
+  .wrap-wide{max-width:1300px}
+  .imp-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:clamp(18px,2vw,30px);align-items:stretch}
+  .info-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;box-shadow:0 18px 40px -30px rgba(15,25,55,.3)}
+  .info-ic{color:var(--accent)}
+  .info-card h3{font-size:1.4rem;margin:8px 0 11px;border-bottom:2px solid var(--accent);padding-bottom:9px;display:inline-block}
+  .info-card p{font-size:.94rem;color:var(--ink-soft);line-height:1.62}
+  /* callouts: icon, value, green line and label all left-aligned; line + text share one width (--cw),
+     so long values wrap and every callout reads at the same horizontal size */
+  .callout{display:flex;flex-direction:column;justify-content:center}
+  .co-ic{display:inline-flex;color:var(--accent)}
+  .callout b{display:block;width:var(--cw);white-space:normal;overflow-wrap:normal;
+    font-family:var(--font-display);font-weight:700;font-size:1.55rem;line-height:1.12;letter-spacing:-.02em;margin-top:10px;
+    border-bottom:2px solid #16a34a;padding-bottom:10px}
+  .co-l{display:block;font-family:var(--font-display);font-weight:600;font-size:.95rem;margin-top:12px;line-height:1.35}
+  .callout p{font-size:.9rem;color:var(--ink-soft);margin-top:8px;line-height:1.5}
+  @media(max-width:900px){.imp-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.imp-grid{grid-template-columns:1fr}}
+
+  main{padding-block:clamp(20px,3vw,40px)}
+
+  /* Three-column sub-projects */
+  .subs{padding-block:clamp(26px,3.4vw,44px)}
+  .subs-intro{text-align:center;font-family:var(--font-display);font-size:clamp(1.05rem,1.8vw,1.35rem);
+    color:var(--ink-soft);max-width:60ch;margin:0 auto clamp(22px,3vw,38px);letter-spacing:-.01em}
+  .subs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,2.4vw,34px)}
+  .sub{margin:0}
+  .sub-media{border-radius:var(--radius);overflow:hidden;background:var(--bg-alt);border:1px solid var(--line);
+    box-shadow:0 16px 40px -30px rgba(15,25,55,.35);aspect-ratio:4/3}
+  .sub-media img,.sub-media video{width:100%;height:100%;object-fit:cover;display:block}
+  .sub h4{font-size:1.16rem;margin:16px 0 8px;letter-spacing:-.02em}
+  .sub p{font-size:.9rem;color:var(--ink-soft);line-height:1.55}
+  @media(max-width:760px){.subs-grid{grid-template-columns:1fr;gap:26px}}
+
+  /* Featured sub-project cards (home-page style: text + callouts + slideshow) */
+  .feat-sec{padding-block:clamp(24px,3.2vw,42px);border-top:1px solid var(--line)}
+  .feat-sec.first{border-top:0}
+  .feat{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(28px,4vw,60px);align-items:center}
+  .feat-text h3{font-size:clamp(1.5rem,2.6vw,2.1rem);letter-spacing:-.03em}
+  .feat-mini{display:flex;flex-wrap:wrap;gap:22px 30px;margin-top:22px}
+  .fm{display:flex;flex-direction:column;min-width:0}
+  .fmi{color:var(--accent);margin-bottom:8px}
+  .fm b{display:block;max-width:19ch;font-family:var(--font-display);font-weight:700;font-size:1.32rem;letter-spacing:-.02em;line-height:1.12;overflow-wrap:break-word}
+  .fm .fml{display:block;max-width:19ch;white-space:normal;overflow-wrap:break-word;color:var(--muted);font-size:.8rem;margin-top:6px;line-height:1.35}
+  .feat-div{border:0;border-top:1px solid var(--line);margin:22px 0 18px}
+  .feat-desc{color:var(--ink-soft);font-size:1rem;line-height:1.62}
+  @media(max-width:820px){.feat{grid-template-columns:1fr;gap:22px}}
+
+  /* Slideshow lightbox */
+  .slb{position:fixed;inset:0;z-index:1000;background:rgba(6,8,12,.93);display:flex;flex-direction:column;
+    align-items:center;justify-content:center;padding:clamp(16px,4vw,60px);gap:16px}
+  .slb[hidden]{display:none}
+  .slb-stage{max-width:min(1120px,92vw);max-height:74vh;display:flex}
+  .slb-stage img,.slb-stage video{max-width:100%;max-height:74vh;border-radius:10px;object-fit:contain;background:#000}
+  .slb-meta{color:#fff;text-align:center;max-width:64ch}
+  .slb-meta b{font-family:var(--font-display);font-size:1.2rem}
+  .slb-meta p{color:rgba(255,255,255,.72);font-size:.95rem;margin-top:6px}
+  .slb-close{position:absolute;top:18px;right:22px;background:none;border:0;color:#fff;font-size:26px;cursor:pointer;opacity:.85}
+  .slb-close:hover{opacity:1}
+  .slb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.12);border:0;color:#fff;
+    width:48px;height:48px;border-radius:50%;font-size:28px;cursor:pointer;line-height:1}
+  .slb-nav:hover{background:rgba(255,255,255,.24)}
+  .slb-nav.prev{left:18px}.slb-nav.next{right:18px}
+  @media(max-width:520px){.slb-nav{width:40px;height:40px;font-size:22px}}
+
+  /* How I did it */
+  .built{background:#fff;border-top:1px solid var(--line);padding-block:clamp(28px,3.6vw,48px)}
+  .built .section-head{margin-bottom:clamp(18px,2.6vw,28px)}
+  .cols{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(30px,6vw,80px);max-width:1120px}
+  .col-h{font-family:var(--font-display);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
+  .col ul{list-style:none;display:flex;flex-direction:column;gap:24px}
+  .sw li{display:flex;gap:22px;align-items:center}
+  .sw .logo{flex:none;width:104px;height:76px;display:grid;place-items:center}
+  .sw .logo img{max-width:104px;max-height:72px;object-fit:contain}
+  .sw .logo :global(svg){color:var(--muted)}
+  .sw b{font-family:var(--font-display);font-size:1rem;display:block}
+  .sw span{font-size:.9rem;color:var(--ink-soft);margin-top:3px;display:block;max-width:40ch}
+  .sk li{display:flex;gap:13px;align-items:center}
+  .sk-ic{flex:none;width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:var(--bg-alt);border:1px solid var(--line);color:var(--accent)}
+  .sk b{font-family:var(--font-display);font-weight:500;font-size:1.02rem}
+  .built .arrow-link{margin-top:38px}
+  @media(max-width:640px){.cols{grid-template-columns:1fr;gap:34px}}
+
+  .pager{display:flex;justify-content:space-between;gap:20px;padding-block:44px 72px;border-top:1px solid var(--line)}
+  .pg{display:flex;flex-direction:column;gap:6px}.pg.r{text-align:right}
+  .pg span{color:var(--muted);font-size:.82rem}
+  .pg b{font-family:var(--font-display);font-size:1.2rem;font-weight:600}
+  .pg:hover b{color:var(--accent)}
+</style>

@@ -1,0 +1,11 @@
+{
+  "featured": ["service-headframe", "jib-crane", "adjustable-dc-power-supply", "headframe"],
+  "moreWork": ["underground", "rsx-arm", "leg-stride-kinematics", "hydraulic-cart", "pick-and-place"],
+  "heroClips": [
+    { "src": "/media/hero/pipesling.mp4",    "poster": "/media/hero/pipesling.jpg",    "label": "Rigging Simulation" },
+    { "src": "/media/hero/hitch.mp4",        "poster": "/media/hero/hitch.jpg",        "label": "Hitch on Pallet" },
+    { "src": "/media/hero/skip-removal.mp4", "poster": "/media/hero/skip-removal.jpg", "label": "Skip Removal" },
+    { "src": "/media/hero/install-rep.mp4",  "poster": "/media/hero/install-rep.jpg",  "label": "Jib Crane Install" },
+    { "src": "/media/hero/v1-anim.mp4",      "poster": "/media/hero/v1-anim.jpg",      "label": "Rover Arm" }
+  ]
+}

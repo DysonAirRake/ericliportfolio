@@ -1,0 +1,46 @@
+title: Mars Rover Robotic Arm Work
+order: 12
+discipline: Robotics · Mechanical Design
+tags: [Fusion360, 3D Printing, Assembly]
+employer: UofT Robotics for Space Exploration
+location: Robotics for Space Exploration · Toronto, ON
+timeframe: 2022 – 2025
+role: Arm Team Member
+summary: My contributions to the Robotics for Space Exploration (RSX) rover arm team, from CAD to assembly.
+liveUrl: https://eric-li-portfolio.webflow.io/projects/rsx-robotics-for-space-exploration-design-team-highlights
+card: practice-arm.jpg
+
+# INFO card
+impact: >
+  As a mechanical designer on UofT's Robotics for Space Exploration team, I helped build a
+  300+ component robotic arm for the University Rover Challenge — managing the CAD assembly and
+  helping build a 5.5-ft dexterity test bench.
+
+highlights:
+  - { icon: layers, value: "300+",  label: "Components designed" }
+  - { icon: ruler,  value: "5.5 ft", label: "Custom test bench built" }
+  - { icon: team,   value: "35+",   label: "URC competing teams" }
+
+# HERO SECTION — two media columns, each: media, title, caption
+showcase:
+  media:
+    - video: v1-animation.mp4
+      poster: v1-animation.jpg
+      title: Practice Arm Representation
+      caption: >
+        This video shows a brief representation of the iteration of the arm design I worked on
+        with teammates the most.
+    - vimeo: "1008402685"
+      title: Design Exercise
+      caption: >
+        I was tasked with a solo design to improve the base joint. This video is a conceptual
+        draft I created to simplify the explanation process.
+
+software: [Fusion 360, Autodesk Inventor, SOLIDWORKS]
+skills: [Robotics Design, 3D Printing, Team Collaboration, Prototyping]
+
+# PROJECT GALLERY (in order)
+media:
+  - { img: practice-arm.jpg, title: "Practice Arm Render", subtitle: "CAD render", desc: "Render of the practice arm iteration developed with the team." }
+  - { img: extended-arm.jpg, title: "Extended Arm", subtitle: "Full reach", desc: "The arm shown at full extension." }
+  - { img: arm-subassembly.jpg, title: "Arm Subassembly", subtitle: "Assembly detail", desc: "Detail of one of the arm's subassemblies." }

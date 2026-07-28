@@ -1,0 +1,87 @@
+title: Ore Production Headframe Model
+order: 14
+discipline: Industrial CAD & Simulation
+tags: [Inventor, AutoCAD, SOLIDWORKS, Documentation]
+employer: Nutrien
+location: Cory Potash Mine · Saskatoon, SK
+timeframe: 2023 – 2024
+role: Co-op · Mechanical Engineering Design & Drafting
+summary: Rebuilt the ore-hoist production headframe as a to-scale digital twin plus a 1:100 physical model displayed in the mine training room.
+blurb: >
+  Rebuilt the entire Nutrien Cory Potash ore-hoist production headframe in the digital and
+  physical world to help simulate a 53-ton skip (hoist bucket) upgrade — from 200+ historical
+  drawings. The 1:100 physical model is currently displayed in the Mine Training Room.
+liveUrl: https://eric-li-portfolio.webflow.io/projects/production-headframe-3d-model
+card: inside-steel.jpg
+
+# Featured-block slideshow (homepage card)
+gallery:
+  - { video: skip-removal.mp4, poster: skip-removal.jpg, alt: Skip removal simulation }
+  - { img: inside-steel.jpg, alt: Inside the headframe steel }
+  - { img: front-view.jpg, alt: Physical model front view }
+  - { img: ore-bucket-green.jpg, alt: Ore bucket highlighted }
+  - { img: autocad-exploded.jpg, alt: AutoCAD exploded view }
+  - { img: pose.jpg, alt: Physical model pose }
+
+# Callout cards
+highlights:
+  - { icon: upgrade, value: "53-Ton", label: "Skip upgrade" }
+  - { icon: layers,  value: "1:100",  label: "3D-printed miniature model" }
+  - { icon: doc,     value: "200+",   label: "Drawings rebuilt/documented" }
+
+# INFO card
+impact: >
+  Rebuilt the entire ore-hoist production headframe as a to-scale digital twin from 200+
+  historical drawings, then built a 1:100 physical model displayed in Nutrien Cory's mine
+  training room — used in steel-upgrade plans and to inform the 53-ton skip (hoist bucket)
+  upgrade.
+
+# HERO SECTION 1 — LinkedIn feature image + the video Nutrien asked for (YouTube)
+showcase:
+  heading: Posted publicly and asked to make a video.
+  body: >
+    Showcased briefly on Nutrien's LinkedIn, Facebook and Instagram, and on the company's
+    internal Geo homepage — after which I was asked to produce a walkthrough video of the build.
+  media:
+    - { img: linkedin.jpg, label: "Featured on Nutrien's socials" }
+    - { youtube: NnalTH9qz28, label: "The walkthrough I was asked to make" }
+
+# HERO SECTION 2 — the multi-million-dollar upgrade simulation
+heroes:
+  - heading: Playing my part in a multi-million-dollar upgrade.
+    body: >
+      This to-scale virtual twin, rebuilt from 200+ historical drawings, helped simulate removal
+      of the 53-ton skip and the relevant steel for its upgraded replacement.
+    video: skip-removal.mp4
+    poster: skip-removal.jpg
+    flip: true
+
+software:
+  - { name: Autodesk Inventor, desc: "Modeled the tower and its subassemblies from the historical drawing set." }
+  - { name: AutoCAD, desc: "Rigging/slinging documentation, fire-safety floor plans, and assembly management." }
+  - { name: SOLIDWORKS, desc: "Prepared the 1:100 model for physical 3D printing." }
+  - { name: Navisworks, desc: "Managed and simulated movement through the 6000+ component model." }
+  - { name: Meridian, desc: "Drawing management and documentation control." }
+skills: [Reverse Engineering, Technical Drafting, Industrial Rigging/Slinging, Communication, Mechanical Simulation, 3D Printing, Documentation Management]
+
+# PROJECT GALLERY — walkthrough video first, then "inside steel", then remaining renders/photos,
+# with phone (IMG_) photos last. Excludes the hero YouTube/LinkedIn media, the skip-removal hero
+# clip, and the 20-second skip-removal clip.
+media:
+  - { video: raw-hf.mp4, poster: raw-hf.jpg, title: "Headframe Walkthrough", subtitle: "Build explanation", desc: "Walkthrough explaining the rebuilt ore-production headframe model." }
+  - { img: inside-steel.jpg, title: "Inside the Steel", subtitle: "Structural interior", desc: "View inside the reconstructed headframe steel structure." }
+  - { img: front-view.jpg, title: "Front View", subtitle: "Physical model", desc: "Front view of the 1:100 physical model." }
+  - { img: side-wide.jpg, title: "Side Profile", subtitle: "Wide view", desc: "Wide side profile of the headframe." }
+  - { img: ore-bucket-green.jpg, title: "Ore Skip", subtitle: "Bucket highlighted", desc: "The ore skip (hoist bucket) highlighted within the assembly." }
+  - { img: ore-hoist-ground.jpg, title: "Ground Level", subtitle: "Ore-hoist base", desc: "Ore-hoist structure at ground level." }
+  - { img: full-assembly.jpg, title: "Full Assembly", subtitle: "Complete model", desc: "The complete digital assembly of the headframe." }
+  - { img: assembly-bottom.jpg, title: "Assembly — Bottom", subtitle: "Underside view", desc: "Underside view of the headframe assembly." }
+  - { img: autocad-assembly-top.jpg, title: "AutoCAD — Top", subtitle: "Assembly drawing", desc: "AutoCAD assembly view from the top." }
+  - { img: autocad-exploded.jpg, title: "AutoCAD — Exploded", subtitle: "Assembly breakdown", desc: "Exploded AutoCAD view of the headframe assembly." }
+  - { img: height-comparison.jpg, title: "Height Comparison", subtitle: "Scale reference", desc: "Scale/height comparison of the physical model." }
+  - { img: showcase-box.jpg, title: "Showcase Box", subtitle: "1:100 display", desc: "The 1:100 physical model in its display case." }
+  - { img: engraved.jpg, title: "Engraved Name", subtitle: "Model detail", desc: "Engraved name plate on the physical showcase." }
+  - { img: pose.jpg, title: "Finished Model", subtitle: "Completed build", desc: "The completed 1:100 physical model." }
+  - { img: img-model-1.jpg, title: "Build Photo", subtitle: "In progress", desc: "Photo from assembling the physical model." }
+  - { img: img-model-2.jpg, title: "Build Photo", subtitle: "In progress", desc: "Photo from assembling the physical model." }
+  - { img: img-model-3.jpg, title: "Build Photo", subtitle: "Early stage", desc: "Early-stage photo of the physical model build." }

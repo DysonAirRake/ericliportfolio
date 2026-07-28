@@ -1,0 +1,118 @@
+title: Assorted Underground Mine Improvements
+order: 11
+discipline: Design · FEA · Safety · PM
+tags: [Drafting, Procurement, Project Management, FEA, CAD, GD&T, Safety, Documentation]
+employer: Nutrien
+location: Cory Potash Mine · Saskatoon, SK
+timeframe: 2023 – 2024
+role: Co-op · Mechanical Engineering Design & Drafting
+summary: Five completed underground mine efficiency and safety improvements spanning design, analysis, drafting and procurement.
+blurb: >
+  Two underground safety solutions — an adjustable road drag and conveyor headcovers —
+  designed to a safety factor above 5 and approved at the VP level, plus three smaller
+  design-and-drafting projects.
+liveUrl: https://eric-li-portfolio.webflow.io/projects/potash-conveyance-safety-headcover
+card: headcover-belt.jpg
+
+# Featured-block slideshow (homepage card)
+gallery:
+  - { img: headcover-belt.jpg, alt: Conveyor safety headcover }
+  - { img: roaddrag.jpg, alt: Adjustable road drag }
+  - { img: scoop-hitch.jpg, alt: Scoop zipper hitch }
+  - { img: hdpe-bracket.jpg, alt: HDPE valve brackets }
+
+# Callout cards — first two unchanged; third = shop visits
+highlights:
+  - { icon: shield, value: ">5",      label: "FEA safety factor" }
+  - { icon: road,   value: "100+ km", label: "Underground roads served" }
+  - { icon: phone,  value: "Shop Visits", label: "Visited multiple manufacturing shops" }
+
+# INFO card
+impact: >
+  Five assorted, completed mine-improvement projects combining engineering design, analysis,
+  project management, process engineering, communication, drafting and teamwork.
+
+# TWO FEATURED SUB-PROJECTS (home-page card style: callouts + slideshow)
+features:
+  - title: Underground Road Rehabilitation Drag
+    callouts:
+      - { icon: cost,   value: "~$17,000",           label: "Total procurement cost" }
+      - { icon: gauge,  value: "FEA",                label: "Iterative Finite Element Analysis" }
+      - { icon: pencil, value: "Hand analysis", label: "Created hand sketches and calculations for presentation/discussion" }
+    body: >
+      Even beyond the main conveyor lines, small rocks existed on the roads as residue from
+      mining machines and scoops. Thus, a road drag was needed along haulage roads which could
+      be towed by maintenance equipment to break up rocks as operators traveled. I iterated on
+      designs alongside my great coworker Maximus Litzenberger, who handled most of the
+      administrative work.
+    media:
+      - { video: road-drag-v31.mp4, poster: road-drag-v31.jpg, title: "Road Drag v3.1", caption: "Final design before drafting and procurement" }
+      - { video: road-drag-big-iter.mp4, poster: road-drag-big-iter.jpg, title: "Big Iteration", caption: "Iteration after major meeting with the maintenance team" }
+      - { video: road-drag-recommended.mp4, poster: road-drag-recommended.jpg, title: "Recommended", caption: "Initial design" }
+
+  - title: Potash Conveyance Headcovers
+    callouts:
+      - { icon: money,   value: "<~$10,000",  label: "Prototype cost" }
+      - { icon: hardhat, value: "Safety First", label: "Potash build-up wasn't very disruptive to production but could be to operator well-being" }
+    body: >
+      Fine potash particles and dust spilling from the belt conveyors was a hazard for vehicles
+      traveling along underground roads — running into it could kick up a cloud of dust or harm
+      transmission and other vehicle components. I designed a forkliftable safety headcover to be
+      installed under the belt line in particularly hazardous conveyor areas.
+    media:
+      - { video: headcover-final.mp4, poster: headcover-final.jpg, title: "Conveyance Headcover Final Design", caption: "Final installed design" }
+      - { video: headcover-forkliftable.mp4, poster: headcover-forkliftable.jpg, title: "Forkliftable Design v1", caption: "Iteration to improve ease of installation" }
+      - { img: headcover-fea.jpg, title: "Conveyance Headcover Stress FEA", caption: "Von-Mises stress study" }
+      - { img: headcover-fea-closer.jpg, title: "FEA Closer", caption: "Detail of the stress result" }
+
+# THREE SMALLER PROJECTS (3-column, each with its own slideshow + lightbox)
+subprojectsIntro: >
+  Three smaller underground projects further showcasing mechanical design, drafting, FEA,
+  project management and procurement.
+subprojects:
+  - title: Scoop Quick Attach Hitch
+    media:
+      - { video: hitch.mp4, poster: scoop-full-assembly.jpg, title: "Full Assembly", caption: "Hitch mounted on pallet" }
+      - { img: scoop-img-1.jpg, title: "Field Reference", caption: "Existing hitch measured in the field" }
+      - { img: scoop-img-2.jpg, title: "Field Reference", caption: "Existing hitch measured in the field" }
+      - { img: scoop-hitch.jpg, title: "Scoop Zipper Hitch", caption: "Redesigned CAD model" }
+      - { img: scoop-fea.jpg, title: "Scoop Zipper Hitch FEA", caption: "Stress study" }
+      - { img: scoop-stress.jpg, title: "Scoop Zipper Hitch Stress", caption: "Stress distribution" }
+    body: >
+      Reverse engineering and redesign of an existing scoop quick-attach hitch for pulling custom
+      trailer elements within the mine. Created with field measurements and validated with FEA
+      stress analysis alongside maintenance-team inputs.
+
+  - title: Personnel Ore-Skip Headcover
+    video: hinge-design.mp4
+    poster: hinge-design.jpg
+    body: >
+      To maintain the skips (buckets) that bring potash from 1 km deep underground, the
+      maintenance crew enters a smaller cage to work within the shaft. Even the smallest chunks
+      of potash falling from above reach terminal velocity and can seriously injure personnel.
+      This is the initial design for a headcover within that skip cage aimed at eliminating the
+      risk.
+
+  - title: HDPE Valve Brackets
+    media:
+      - { video: hdpe-rev2.mp4, poster: hdpe-bracket.jpg, title: "Design Demonstration", caption: "REV2 one-minute demonstration" }
+      - { video: hdpe-initial-v31.mp4, poster: hdpe-initial-v31.jpg, title: "Initial Design v3.1", caption: "Earlier design iteration" }
+    body: >
+      Custom 316 stainless-steel HDPE valve mounting brackets designed and drafted for the
+      underground sump-pump piping required to remove underground brine.
+
+software:
+  - { name: Autodesk Inventor, desc: "Modeled the headcovers, road drag and smaller assemblies." }
+  - { name: AutoCAD, desc: "Produced drafting packages and documentation for fabrication." }
+  - { name: SOLIDWORKS, desc: "Supporting 3D design and detailing." }
+  - { name: Navisworks, desc: "Coordinated designs against the underground model." }
+skills: [Design & FEA, Safety Engineering, Project Management, Mechanical Drafting, GD&T, Documentation, Procurement, Reverse Engineering]
+
+# PROJECT GALLERY — remaining imagery
+media:
+  - { img: roaddrag.jpg, title: "Road Drag — Render", subtitle: "Final design", desc: "Render of the final adjustable road-drag design." }
+  - { img: road-drag-initial.jpg, title: "Road Drag — Concept", subtitle: "Early concept", desc: "Initial road-drag concept before iteration." }
+  - { img: headcover-belt.jpg, title: "Headcover Under Belt", subtitle: "Installed context", desc: "The safety headcover shown under the belt line." }
+  - { img: potash-screen.jpg, title: "Potash Screen", subtitle: "REV C", desc: "Potash personnel ore-skip screen, revision C." }
+  - { img: img-install-1.jpg, title: "Hitch Photo", subtitle: "Shop visit", desc: "Scoop quick-attach hitch photographed during a manufacturing shop visit." }
+  - { img: img-install-2.jpg, title: "Hitch Photo", subtitle: "Shop visit", desc: "Scoop quick-attach hitch photographed during a manufacturing shop visit." }

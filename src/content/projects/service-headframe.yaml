@@ -1,0 +1,65 @@
+title: Mine Service Headframe Model
+order: 1
+discipline: Industrial CAD & Simulation
+tags: [Inventor, AutoCAD, Simulation]
+employer: Nutrien
+location: Cory Potash Mine · Saskatoon, SK
+timeframe: 2023 – 2024
+role: Co-op · Mechanical Engineering Design & Drafting
+summary: Rebuilt the mine's service headframe tower from 1960s drawings, driving $125K in rigging cost savings.
+blurb: >
+  Rebuilt the entire mine service headframe tower using Inventor and AutoCAD from drawings
+  going as far back as the 1960s — the basis for rigging simulation, contractor drawing
+  packages and fire-safety planning.
+liveUrl: https://eric-li-portfolio.webflow.io/projects/service-headframe-3d-model
+card: entrance.jpg
+
+# Featured-block slideshow (homepage card) — in order
+gallery:
+  - { video: pipesling.mp4, poster: pipesling.jpg, alt: Pipe sling simulation }
+  - { img: pulley.jpg, alt: Pulley detail }
+  - { img: north.jpg, alt: Headframe north elevation }
+  - { img: autocad.jpg, alt: AutoCAD full assembly }
+  - { img: navisworks.jpg, alt: Navisworks bottom view }
+  - { video: reverse.mp4, poster: reverse.jpg, alt: Reverse walkthrough clip }
+
+# Callout cards (icon / value / label) — in order
+highlights:
+  - { icon: money,  value: "$125,000",        label: "Rigging cost savings" }
+  - { icon: doc,    value: "Slinging/Rigging", label: "6 drawing documentation package" }
+  - { icon: pencil, value: "20+",             label: "Fire safety plans" }
+
+# INFO card (concise)
+impact: >
+  Rebuilt the entire mine service headframe tower in Inventor and AutoCAD from 1960s-era
+  drawings — producing slinging/rigging documentation, a six-drawing package for third-party
+  industrial contractors, fire-safety floor plans, and a geometrical simulation application.
+
+# HERO SECTION — text (left) + video showcase (right)
+showcase:
+  heading: Geometrical confirmation from simulation saves money.
+  body: >
+    As I had already modeled the entire service shaft tower and created a drawing package for
+    slinging engineering documentation, this was simply a step ahead — a 3D simulation and
+    geometrical confirmation for slinging some brine pipes down the shaft inside the bail. This
+    is the render footage from Navisworks, which aided in saving $125,000: the cost of ordering
+    cut piping if we were unsure of the fit.
+  video: initial-surface-render.mp4
+  poster: initial-surface-render.jpg
+  button: { label: "Behind the scenes", href: "#gallery" }
+
+software:
+  - { name: Autodesk Inventor, desc: "Modeled the tower and its subassemblies from the historical drawing set." }
+  - { name: AutoCAD, desc: "Produced rigging/slinging documentation for contracts and fire-safety floor plans, and managed the final massive assembly." }
+  - { name: Navisworks, desc: "Created animations and simulations, and managed and viewed the full tower." }
+skills: [Reverse Engineering, Technical Drafting, Industrial Rigging/Slinging, Communication, Mechanical Simulation]
+
+# PROJECT GALLERY (detail page) — entrance first, reverse clip (Underground Takeout) second;
+# excludes the hero render, pipesling, and the 14ft underground-takeout clip.
+media:
+  - { img: entrance.jpg, title: "Entrance", subtitle: "Service level", desc: "Rendered walk-in view at the service level of the reconstructed headframe tower." }
+  - { video: reverse.mp4, poster: reverse.jpg, title: "Underground Takeout", subtitle: "Walkthrough clip", desc: "Walkthrough of the underground takeout beneath the service headframe." }
+  - { img: pulley.jpg, title: "Pulley", subtitle: "Mechanism detail", desc: "Detail of the headframe pulley/sheave assembly." }
+  - { img: north.jpg, title: "Headframe North", subtitle: "Elevation render", desc: "North elevation of the reconstructed service headframe." }
+  - { img: autocad.jpg, title: "AutoCAD Full", subtitle: "Assembly drawing", desc: "Full AutoCAD assembly used for the contractor drawing package." }
+  - { img: navisworks.jpg, title: "Navisworks Bottom", subtitle: "Coordination view", desc: "Navisworks coordination view from the base of the tower." }

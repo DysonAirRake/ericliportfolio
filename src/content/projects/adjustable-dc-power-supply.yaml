@@ -1,0 +1,61 @@
+title: Adjustable DC Power Supply
+order: 3
+discipline: Electronics Design · SPICE · PCB
+tags: [Electronics, PCB, SPICE]
+employer: University of Toronto
+location: Toronto, ON
+timeframe: "2025"
+role: MIE346 · Digital & Analog Electronics
+summary: A low-cost adjustable DC bench supply built for common mechatronics circuits.
+blurb: >
+  Designed and built a low-cost adjustable DC "lab" supply for common mechatronics circuits —
+  from breadboard prototype through SPICE simulation, PCB layout and a soldered final board.
+card: digital-screen.jpg
+
+# Featured/nav slideshow fallback
+gallery:
+  - { img: digital-screen.jpg, alt: Digital screen display }
+  - { img: milled-top.jpg, alt: Milled board top }
+  - { img: pcb-layout.jpg, alt: PCB layout }
+  - { img: schematic.jpg, alt: Final schematic }
+
+# INFO card
+impact: >
+  Designed and built a low-cost adjustable DC bench supply for powering common mechatronics
+  circuits — prototyped on breadboard and perfboard, validated in SPICE, and laid out on a
+  custom-milled PCB with a digital readout.
+
+# Callout cards
+highlights:
+  - { icon: circuit, value: "2",     label: "Boards soldered" }
+  - { icon: monitor, value: "PCB",   label: "Milled layout design" }
+  - { icon: brain,   value: "LTSPICE", label: "Electrical validation of the voltage regulator stage" }
+
+# HERO SECTION — text (left) + schematic image (right)
+showcase:
+  heading: Simple supply design with noise filtering.
+  body: >
+    Output voltage adjustable from 0–15 V, with an adjustable current limit from 0–3 A.
+    Filtered through three 2nd-order Sallen–Key low-pass active filters forming a 6th-order
+    Butterworth response.
+  img: schematic.jpg
+
+software:
+  - { name: Autodesk Inventor, desc: "Design modeling of the enclosure and mechanical layout." }
+  - { name: AutoCAD, desc: "Technical documentation and dimensioned drawings." }
+  - { name: SOLIDWORKS, desc: "3D design and part detailing." }
+  - { name: LTSPICE, desc: "Electrical validation of the regulator and filter stages." }
+  - { name: Autodesk EAGLE, desc: "Board layout and custom milling of the final PCB." }
+skills: [Electronics Design, Circuit Simulation, PCB Layout, Soldering & Prototyping, Analog Filter Design]
+
+# PROJECT GALLERY (detail page) — plan order
+media:
+  - { img: digital-screen.jpg, title: "Digital Display", subtitle: "Live output", desc: "The finished supply showing its adjustable voltage on the digital readout." }
+  - { img: screen-alt.jpg, title: "Display (Alt)", subtitle: "Alternate reading", desc: "A second output reading on the display." }
+  - { img: milled-top.jpg, title: "Milled Board — Top", subtitle: "Fabricated PCB", desc: "The custom-milled printed circuit board, top side." }
+  - { img: milled-bottom.jpg, title: "Milled Board — Bottom", subtitle: "Fabricated PCB", desc: "The custom-milled printed circuit board, bottom side." }
+  - { img: pcb-layout.jpg, title: "PCB Layout", subtitle: "Board design", desc: "The PCB layout designed from the schematic." }
+  - { img: perfboard-top.jpg, title: "Perfboard — Top", subtitle: "Prototype wiring", desc: "Hand-wired perfboard prototype, top side." }
+  - { img: perfboard-bottom.jpg, title: "Perfboard — Bottom", subtitle: "Prototype wiring", desc: "Hand-wired perfboard prototype, bottom side." }
+  - { img: breadboard.jpg, title: "Breadboard Test", subtitle: "Initial prototype", desc: "Early breadboard prototype of the supply circuit." }
+  - { img: spice.jpg, title: "SPICE Regulator", subtitle: "Voltage regulator portion", desc: "SPICE simulation of the adjustable voltage regulator." }

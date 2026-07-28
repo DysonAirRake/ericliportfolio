@@ -1,0 +1,37 @@
+---
+const year = 2026;
+---
+<footer class="foot" id="contact">
+  <div class="wrap">
+    <p class="kicker light">Let's talk</p>
+    <h2>Open to engineering roles<br />and solving problems.</h2>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="mailto:ericwrli@gmail.com">ericwrli@gmail.com</a>
+      <a class="btn btn-ghost" href="/resume.pdf">Download résumé</a>
+    </div>
+    <div class="meta">
+      <div><span>Location</span>Mississauga, ON</div>
+      <div><span>Phone</span>+1 (647)-636-9186</div>
+      <div><span>LinkedIn</span><a href="https://linkedin.com/in/eric-li-22b314237">in/eric-li</a></div>
+    </div>
+  </div>
+  <div class="wrap base">
+    <span>© {year} Eric Li</span>
+    <span>B.A.Sc., Mechanical Engineering</span>
+  </div>
+</footer>
+
+<style>
+  .foot{background:var(--dark);color:#fff;padding-top:clamp(70px,10vw,130px)}
+  .kicker.light{color:#9fb0ff}
+  .kicker.light::before{background:#9fb0ff}
+  .foot h2{font-size:clamp(1.9rem,5vw,3.7rem);margin-top:20px;letter-spacing:-.03em}
+  .cta-row{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+  .meta{display:flex;gap:48px;flex-wrap:wrap;margin-top:56px;padding-top:34px;border-top:1px solid rgba(255,255,255,.12)}
+  .meta div{display:flex;flex-direction:column;font-size:1rem}
+  .meta span{color:#7b8494;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:7px}
+  .meta a{color:#fff}
+  .base{display:flex;justify-content:space-between;color:#6b7484;font-size:.82rem;
+    padding-block:34px 40px;margin-top:44px;border-top:1px solid rgba(255,255,255,.08)}
+  @media(max-width:600px){.base{flex-direction:column;gap:8px}}
+</style>

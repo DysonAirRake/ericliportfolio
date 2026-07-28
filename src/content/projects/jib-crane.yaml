@@ -1,0 +1,67 @@
+title: Cantilever Jib Crane
+order: 2
+discipline: Design · FEA · Project Management
+tags: [Inventor, FEA, Install]
+employer: Nutrien
+location: Cory Potash Mine · Saskatoon, SK
+timeframe: March 2024
+role: Co-op · Mechanical Engineering Design & Drafting
+summary: A 1-ton wall-mounted jib crane I designed, analyzed and installed to remove a daily lifting hazard.
+blurb: >
+  Designed, analyzed, procured, and installed a 1-ton wall-mounted jib crane for mine safety
+  and efficiency — from column FEA to the on-site load test. This crane was installed inside
+  the ore production headframe model, which I modeled both digitally and physically.
+liveUrl: https://eric-li-portfolio.webflow.io/projects/cantilever-jib-crane-install
+crossLink: { label: "See the Ore Production Headframe", slug: "headframe" }
+card: crane-main.jpg
+
+# Featured/nav slideshow fallback
+gallery:
+  - { img: crane-main.jpg, alt: Crane model render }
+  - { img: hand-calc.jpg, alt: Hand calculation example }
+  - { img: fea-stress-disp.jpg, alt: FEA stress and displacement }
+  - { img: extended-hoist.jpg, alt: Extended hoist }
+
+# Callout cards
+highlights:
+  - { icon: money,  value: "~$4,500",  label: "Component costs" }
+  - { icon: weight, value: "1 Ton",    label: "Rated capacity" }
+  - { icon: brain,  value: "FEA + PM", label: "Analysis & communication" }
+
+# INFO card
+impact: >
+  Designed, analyzed, procured and installed a 1-ton wall-mounted cantilever jib crane to
+  eliminate a manual heavy-lifting hazard on the personnel elevator/stairs — including column
+  steel-modification FEA and supporting hand calculations.
+
+# HERO SECTION — 3 columns: text + two videos
+showcase:
+  heading: Adding to old industrial buildings.
+  body: >
+    Ideas and content drawn from real meetings with the shaft crew and tradespeople, then
+    turned into a designed, analyzed and installed solution.
+  media:
+    - { video: proposition.mp4, poster: proposition.jpg, label: "Initial proposition" }
+    - { video: install-review.mp4, poster: install-review.jpg, label: "Final iteration" }
+
+software:
+  - { name: Autodesk Inventor, desc: "Modeled the crane and its column mounting, and ran supporting FEA." }
+  - { name: Excel, desc: "Structural sizing sheet driven by the hand-calculation variables." }
+  - { name: AutoCAD, desc: "Accessed the production-headframe seed model to design the mount in context." }
+  - { name: Navisworks, desc: "Reviewed and coordinated the crane against the federated model." }
+skills: [Structural Analysis, Finite Element Analysis, Project Management, Procurement, Mechanical Engineering Drafting]
+
+# PROJECT GALLERY — crane main, hand calc, FEA stress/disp first; rest after (excludes Teams
+# images, the two hero videos, and the install-representation clip)
+media:
+  - { img: crane-main.jpg, title: "Crane Model", subtitle: "Inventor render", desc: "The CAD design used for analysis, drafting and install planning." }
+  - { img: hand-calc.jpg, title: "Hand Calculations", subtitle: "Sizing by hand", desc: "Worked hand-calculation example sizing the crane and its supporting steel." }
+  - { img: fea-stress-disp.jpg, title: "FEA — Stress & Displacement", subtitle: "Column study", desc: "Finite-element study of stress and displacement in the modified column steel." }
+  - { img: fea-sf.jpg, title: "FEA — Safety Factor", subtitle: "Factor of safety", desc: "Factor-of-safety plot confirming the column meets the required margin under load." }
+  - { img: beam-fea.jpg, title: "Beam FEA", subtitle: "Load case", desc: "Von-Mises stress study validating the beam under a 1-ton load." }
+  - { img: extended-hoist.jpg, title: "Extended Hoist", subtitle: "Full reach", desc: "The hoist trolley at full extension across the work area." }
+  - { img: hoist-height.jpg, title: "Hoist Height", subtitle: "Vertical travel", desc: "Working hoist height and vertical travel of the crane." }
+  - { img: bushing.jpg, title: "Bushing — Mid Range", subtitle: "Rotating joint", desc: "Mid-range detail of the rotating bushing joint." }
+  - { img: bushing-detail.jpg, title: "Bushing — Detail", subtitle: "Joint close-up", desc: "Close-up detail of the bushing joint construction." }
+  - { img: side-panel.jpg, title: "Side Panel — Up", subtitle: "Upward perspective", desc: "Upward view of the boom and side panel assembly." }
+  - { img: side-panel-down.jpg, title: "Side Panel — Down", subtitle: "Downward perspective", desc: "Downward view of the boom and side panel assembly." }
