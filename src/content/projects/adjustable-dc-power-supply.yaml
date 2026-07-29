@@ -8,7 +8,7 @@ timeframe: "2025"
 role: MIE346 · Digital & Analog Electronics
 summary: A low-cost adjustable DC bench supply built for common mechatronics circuits.
 blurb: >
-  Designed and built a low-cost adjustable DC "lab" supply for common mechatronics circuits —
+  Designed and built a low-cost adjustable DC "lab" supply for common mechatronics circuits,
   from breadboard prototype through SPICE simulation, PCB layout and a soldered final board.
 card: digital-screen.jpg
 

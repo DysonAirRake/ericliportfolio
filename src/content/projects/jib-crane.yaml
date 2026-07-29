@@ -9,7 +9,7 @@ role: Co-op · Mechanical Engineering Design & Drafting
 summary: A 1-ton wall-mounted jib crane I designed, analyzed and installed to remove a daily lifting hazard.
 blurb: >
   Designed, analyzed, procured, and installed a 1-ton wall-mounted jib crane for mine safety
-  and efficiency — from column FEA to the on-site load test. This crane was installed inside
+  and efficiency, from column FEA to the on-site load test. This crane was installed inside
   the ore production headframe model, which I modeled both digitally and physically.
 liveUrl: https://eric-li-portfolio.webflow.io/projects/cantilever-jib-crane-install
 crossLink: { label: "See the Ore Production Headframe", slug: "headframe" }
